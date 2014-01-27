@@ -1,4 +1,4 @@
 Castanet
 ========
 
-Podcast feed frameworks
+Podcast feed framework
