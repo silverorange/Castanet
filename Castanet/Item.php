@@ -113,7 +113,7 @@ class Castanet_Item
 
 	public function setPublishDate($date)
 	{
-		if ($date instanceof SwatDate) {
+		if ($date instanceof DateTime) {
 			$date = $date->format('r');
 		}
 		$this->publish_date = $date;
