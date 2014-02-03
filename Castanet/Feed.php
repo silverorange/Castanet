@@ -234,7 +234,10 @@ class Castanet_Feed
 	{
 		$document = $parent->ownerDocument;
 
-		$node = $document->createElement('link', $this->link);
+		$text = $document->createTextNode($this->link);
+		$node = $document->createElement('link');
+
+		$node->appendChild($text);
 		$parent->appendChild($node);
 	}
 
@@ -246,11 +249,10 @@ class Castanet_Feed
 		if ($this->managing_editor != '') {
 			$document = $parent->ownerDocument;
 
-			$node = $document->createElement(
-				'managingEditor',
-				$this->managing_editor
-			);
+			$text = $document->createTextNode($this->managing_editor);
+			$node = $document->createElement('managingEditor');
 
+			$node->appendChild($text);
 			$parent->appendChild($node);
 		}
 	}
@@ -263,12 +265,13 @@ class Castanet_Feed
 		if ($this->itunes_author != '') {
 			$document = $parent->ownerDocument;
 
+			$text = $document->createTextNode($this->itunes_author);
 			$node = $document->createElementNS(
 				Castanet::ITUNES_NAMESPACE,
-				'author',
-				$this->itunes_author
+				'author'
 			);
 
+			$node->appendChild($text);
 			$parent->appendChild($node);
 		}
 	}
@@ -305,10 +308,13 @@ class Castanet_Feed
 
 	protected function buildLanguage(DOMNode $parent)
 	{
-		$document = $parent->ownerDocument;
-
 		if ($this->language != '') {
-			$node = $document->createElement('language', $this->language);
+			$document = $parent->ownerDocument;
+
+			$text = $document->createTextNode($this->language);
+			$node = $document->createElement('language');
+
+			$node->appendChild($text);
 			$parent->appendChild($node);
 		}
 	}
@@ -318,10 +324,13 @@ class Castanet_Feed
 
 	protected function buildCopyright(DOMNode $parent)
 	{
-		$document = $parent->ownerDocument;
-
 		if ($this->copyright != '') {
-			$node = $document->createElement('copyright', $this->copyright);
+			$document = $parent->ownerDocument;
+
+			$text = $document->createTextNode($this->copyright);
+			$node = $document->createElement('copyright');
+
+			$node->appendChild($text);
 			$parent->appendChild($node);
 		}
 	}
@@ -366,12 +375,13 @@ class Castanet_Feed
 		if ($this->image_url != '') {
 			$document = $parent->ownerDocument;
 
+			$text = $document->createTextNode($this->image_url);
 			$node = $document->createElementNS(
 				Castanet::ITUNES_NAMESPACE,
-				'image',
-				$this->image_url
+				'image'
 			);
 
+			$node->appendChild($text);
 			$parent->appendChild($node);
 		}
 	}
@@ -395,13 +405,19 @@ class Castanet_Feed
 			$node->appendChild($title);
 			$image_node->appendChild($node);
 
-			$node = $document->createElement('link', $this->link);
+			$link = $document->createTextNode($this->link);
+			$node = $document->createElement('link');
+			$node->appendChild($link);
 			$image_node->appendChild($node);
 
-			$node = $document->createElement('width', $this->image_width);
+			$width = $document->createTextNode($this->image_width);
+			$node = $document->createElement('width');
+			$node->appendChild($width);
 			$image_node->appendChild($node);
 
-			$node = $document->createElement('height', $this->image_height);
+			$height = $document->createTextNode($this->image_height);
+			$node = $document->createElement('height');
+			$node->appendChild($height);
 			$image_node->appendChild($node);
 		}
 	}
