@@ -319,9 +319,9 @@ class Castanet_Item
 		$document = $parent->ownerDocument;
 
 		$node = $document->createElement('enclosure');
-		$node->setAttribute('url',    $this->media_url);
+		$node->setAttribute('url', $this->media_url);
 		$node->setAttribute('length', $this->media_size);
-		$node->setAttribute('type',   $this->media_mime_type);
+		$node->setAttribute('type', $this->media_mime_type);
 		$parent->appendChild($node);
 	}
 
@@ -336,13 +336,17 @@ class Castanet_Item
 			$duration = $this->media_duration;
 
 			$hours    = intval($duration / 3600);
-			$duration-= ($hours > 0) ? ($hours * 3600) : 0;
+			$duration -= ($hours > 0) ? ($hours * 3600) : 0;
 			$minutes  = intval($duration / 60);
-			$duration-= ($minutes > 0) ? ($minutes * 60) : 0;
+			$duration -= ($minutes > 0) ? ($minutes * 60) : 0;
 			$seconds  = $duration;
 
-			$formatted_duration =
-				sprintf('%d:%02d:%02d', $hours, $minutes, $seconds);
+			$formatted_duration = sprintf(
+				'%d:%02d:%02d',
+				$hours,
+				$minutes,
+				$seconds
+			);
 
 			$node = $document->createElementNS(
 				Castanet::ITUNES_NAMESPACE,

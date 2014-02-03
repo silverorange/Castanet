@@ -129,8 +129,8 @@ class Castanet_Feed
 
 	public function setImage($url, $width, $height)
 	{
-		$this->image_url    = strval($url);
-		$this->image_width  = intval($width);
+		$this->image_url = strval($url);
+		$this->image_width = intval($width);
 		$this->image_height = intval($height);
 	}
 
@@ -220,9 +220,8 @@ class Castanet_Feed
 	{
 		$document = $parent->ownerDocument;
 
-		$node = $document->createElement('title');
-
 		$text = $document->createTextNode($this->title);
+		$node = $document->createElement('title');
 
 		$node->appendChild($text);
 		$parent->appendChild($node);
