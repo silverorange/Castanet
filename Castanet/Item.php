@@ -201,6 +201,7 @@ class Castanet_Item
 
 			$node->appendChild($text);
 			$parent->appendChild($node);
+		}
 	}
 
 	// }}}
@@ -304,7 +305,7 @@ class Castanet_Item
 			$document = $parent->ownerDocument;
 
 			$text = $document->createTextNode($this->publish_date);
-			$node = $document->createElement('pubDate'i);
+			$node = $document->createElement('pubDate');
 
 			$node->appendChild($text);
 			$parent->appendChild($node);
