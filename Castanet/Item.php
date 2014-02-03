@@ -345,7 +345,7 @@ class Castanet_Item
 				sprintf('%d:%02d:%02d', $hours, $minutes, $seconds);
 
 			$node = $document->createElementNS(
-				Castanet_FEED::ITUNES_NAMESPACE,
+				Castanet::ITUNES_NAMESPACE,
 				'duration',
 				$formatted_duration
 			);
