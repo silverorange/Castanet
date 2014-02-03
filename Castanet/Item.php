@@ -80,7 +80,7 @@ class Castanet_Item
 
 	public function setTitle($title)
 	{
-		$this->title = strval(SwatString::minimizeEntities($title));
+		$this->title = strval($title);
 	}
 
 	// }}}
@@ -113,7 +113,7 @@ class Castanet_Item
 
 	public function setPublishDate($date)
 	{
-		if ($date instanceof SwatDate) {
+		if ($date instanceof DateTime) {
 			$date = $date->format('r');
 		}
 		$this->publish_date = $date;
@@ -193,10 +193,15 @@ class Castanet_Item
 
 	protected function buildTitle(DOMNode $parent)
 	{
-		$document = $parent->ownerDocument;
+		if ($this->title != '') {
+			$document = $parent->ownerDocument;
 
-		$node = $document->createElement('title', $this->title);
-		$parent->appendChild($node);
+			$text = $document->createTextNode($this->title);
+			$node = $document->createElement('title');
+
+			$node->appendChild($text);
+			$parent->appendChild($node);
+		}
 	}
 
 	// }}}
@@ -206,7 +211,11 @@ class Castanet_Item
 	{
 		if ($this->link != '') {
 			$document = $parent->ownerDocument;
-			$node = $document->createElement('link', $this->link);
+
+			$text = $document->createTextNode($this->link);
+			$node = $document->createElement('link');
+
+			$node->appendChild($text);
 			$parent->appendChild($node);
 		}
 	}
@@ -292,10 +301,13 @@ class Castanet_Item
 
 	protected function buildPublishDate(DOMNode $parent)
 	{
-		$document = $parent->ownerDocument;
-
 		if ($this->publish_date != '') {
-			$node = $document->createElement('pubDate', $this->publish_date);
+			$document = $parent->ownerDocument;
+
+			$text = $document->createTextNode($this->publish_date);
+			$node = $document->createElement('pubDate');
+
+			$node->appendChild($text);
 			$parent->appendChild($node);
 		}
 	}
@@ -308,9 +320,9 @@ class Castanet_Item
 		$document = $parent->ownerDocument;
 
 		$node = $document->createElement('enclosure');
-		$node->setAttribute('url',    $this->media_url);
+		$node->setAttribute('url', $this->media_url);
 		$node->setAttribute('length', $this->media_size);
-		$node->setAttribute('type',   $this->media_mime_type);
+		$node->setAttribute('type', $this->media_mime_type);
 		$parent->appendChild($node);
 	}
 
@@ -325,16 +337,20 @@ class Castanet_Item
 			$duration = $this->media_duration;
 
 			$hours    = intval($duration / 3600);
-			$duration-= ($hours > 0) ? ($hours * 3600) : 0;
+			$duration -= ($hours > 0) ? ($hours * 3600) : 0;
 			$minutes  = intval($duration / 60);
-			$duration-= ($minutes > 0) ? ($minutes * 60) : 0;
+			$duration -= ($minutes > 0) ? ($minutes * 60) : 0;
 			$seconds  = $duration;
 
-			$formatted_duration =
-				sprintf('%d:%02d:%02d', $hours, $minutes, $seconds);
+			$formatted_duration = sprintf(
+				'%d:%02d:%02d',
+				$hours,
+				$minutes,
+				$seconds
+			);
 
 			$node = $document->createElementNS(
-				Castanet_FEED::ITUNES_NAMESPACE,
+				Castanet::ITUNES_NAMESPACE,
 				'duration',
 				$formatted_duration
 			);
