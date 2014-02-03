@@ -61,7 +61,7 @@ $package->setOptions(
 			'tests'               => 'test',
 		),
 		'exceptions'              => array(
-			'Castanet.pgp'        => 'php',
+			'Castanet.php'        => 'php',
 			'LICENSE'             => 'doc',
 			'README.md'           => 'doc',
 		),
