@@ -98,7 +98,13 @@ $package->addMaintainer(
 );
 
 $package->setPhpDep('5.2.1');
-$package->addExtensionDep('required', 'dom');
+
+$package->addPackageDepWithChannel(
+	'required',
+	'Swat',
+	'pear.silverorange.com',
+	'1.4.0'
+);
 
 $package->setPearInstallerDep('1.4.0');
 $package->generateContents();
