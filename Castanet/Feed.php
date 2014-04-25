@@ -49,6 +49,11 @@ class Castanet_Feed
 	/**
 	 * @var string
 	 */
+	protected $image_url;
+
+	/**
+	 * @var string
+	 */
 	protected $itunes_author;
 
 	/**
