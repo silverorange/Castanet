@@ -52,6 +52,16 @@ class Castanet_Feed
 	protected $image_url;
 
 	/**
+	 * @var integer
+	 */
+	protected $image_width;
+
+	/**
+	 * @var integer
+	 */
+	protected $image_height;
+
+	/**
 	 * @var string
 	 */
 	protected $itunes_author;
