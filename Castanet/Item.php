@@ -38,6 +38,21 @@ class Castanet_Item
 	/**
 	 * @var string
 	 */
+	protected $image_url;
+
+	/**
+	 * @var integer
+	 */
+	protected $image_width;
+
+	/**
+	 * @var integer
+	 */
+	protected $image_height;
+
+	/**
+	 * @var string
+	 */
 	protected $media_url;
 
 	/**
@@ -120,6 +135,16 @@ class Castanet_Item
 	}
 
 	// }}}
+	// {{{ public function setImage()
+
+	public function setImage($url, $width, $height)
+	{
+		$this->image_url = strval($url);
+		$this->image_width = intval($width);
+		$this->image_height = intval($height);
+	}
+
+	// }}}
 	// {{{ public function setMediaUrl()
 
 	public function setMediaUrl($url)
@@ -184,6 +209,8 @@ class Castanet_Item
 		$this->buildItunesSummary($item);
 		$this->buildDescription($item);
 		$this->buildPublishDate($item);
+		$this->buildImage($item);
+		$this->buildItunesImage($item);
 		$this->buildMediaEnclosure($item);
 		$this->buildMediaDuration($item);
 	}
@@ -309,6 +336,61 @@ class Castanet_Item
 
 			$node->appendChild($text);
 			$parent->appendChild($node);
+		}
+	}
+
+	// }}}
+	// {{{ protected function buildImage()
+
+	protected function buildImage(DOMNode $parent)
+	{
+		if ($this->image_url != '') {
+			$document = $parent->ownerDocument;
+
+			$image_node = $document->createElement('image');
+			$parent->appendChild($image_node);
+
+			$node = $document->createElement('url', $this->image_url);
+			$image_node->appendChild($node);
+
+			$title = $document->createTextNode($this->title);
+			$node = $document->createElement('title');
+			$node->appendChild($title);
+			$image_node->appendChild($node);
+
+			$link = $document->createTextNode($this->link);
+			$node = $document->createElement('link');
+			$node->appendChild($link);
+			$image_node->appendChild($node);
+
+			$width = $document->createTextNode($this->image_width);
+			$node = $document->createElement('width');
+			$node->appendChild($width);
+			$image_node->appendChild($node);
+
+			$height = $document->createTextNode($this->image_height);
+			$node = $document->createElement('height');
+			$node->appendChild($height);
+			$image_node->appendChild($node);
+		}
+	}
+
+	// }}}
+	// {{{ protected function buildItunesImage()
+
+	protected function buildItunesImage(DOMNode $parent)
+	{
+		if ($this->image_url != '') {
+			$document = $parent->ownerDocument;
+
+			$image_node = $document->createElementNS(
+				Castanet::ITUNES_NAMESPACE,
+				'image'
+			);
+
+			$image_node->setAttribute('href', $this->image_url);
+
+			$parent->appendChild($image_node);
 		}
 	}
 
