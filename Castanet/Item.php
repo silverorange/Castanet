@@ -5,7 +5,7 @@ require_once 'Castanet.php';
 /**
  * Class used to generate individual items in a podcast.
  *
- * @package   Emrap
+ * @package   Castanet
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Charles Waddell <charles@silverorange.com>
  * @copyright 2011-2014 silverorange
