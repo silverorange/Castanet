@@ -390,14 +390,14 @@ class Castanet_Feed
 		if ($this->image_url != '') {
 			$document = $parent->ownerDocument;
 
-			$text = $document->createTextNode($this->image_url);
-			$node = $document->createElementNS(
+			$image_node = $document->createElementNS(
 				Castanet::ITUNES_NAMESPACE,
 				'image'
 			);
 
-			$node->appendChild($text);
-			$parent->appendChild($node);
+			$image_node->setAttribute('href', $this->image_url);
+
+			$parent->appendChild($image_node);
 		}
 	}
 
