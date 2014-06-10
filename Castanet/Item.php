@@ -38,17 +38,7 @@ class Castanet_Item
 	/**
 	 * @var string
 	 */
-	protected $image_url;
-
-	/**
-	 * @var string
-	 */
-	protected $image_mime_type;
-
-	/**
-	 * @var integer
-	 */
-	protected $image_size;
+	protected $itunes_image_url;
 
 	/**
 	 * @var string
@@ -135,32 +125,6 @@ class Castanet_Item
 	}
 
 	// }}}
-	// {{{ public function setImage()
-
-	public function setImage($url, $image_size = null, $image_mime_type = '')
-	{
-		$this->image_url = strval($url);
-		$this->setImageSize($image_size);
-		$this->setImageMimeType($image_mime_type);
-	}
-
-	// }}}
-	// {{{ public function setImageSize()
-
-	public function setImageSize($size)
-	{
-		$this->image_size = intval($size);
-	}
-
-	// }}}
-	// {{{ public function setImageMimeType()
-
-	public function setImageMimeType($mime_type)
-	{
-		$this->image_mime_type = strval($mime_type);
-	}
-
-	// }}}
 	// {{{ public function setMediaUrl()
 
 	public function setMediaUrl($url)
@@ -209,6 +173,14 @@ class Castanet_Item
 	}
 
 	// }}}
+	// {{{ public function setItunesImage()
+
+	public function setItunesImage($url)
+	{
+		$this->itunes_image_url = strval($url);
+	}
+
+	// }}}
 	// {{{ public function build()
 
 	public function build(DOMNode $parent)
@@ -223,12 +195,11 @@ class Castanet_Item
 		$this->buildGuid($item);
 		$this->buildItunesSubtitle($item);
 		$this->buildItunesSummary($item);
+		$this->buildItunesImage($item);
 		$this->buildDescription($item);
 		$this->buildPublishDate($item);
 		$this->buildMediaEnclosure($item);
 		$this->buildMediaDuration($item);
-		$this->buildItunesImage($item);
-		$this->buildImageEnclosure($item);
 	}
 
 	// }}}
@@ -324,6 +295,25 @@ class Castanet_Item
 	}
 
 	// }}}
+	// {{{ protected function buildItunesImage()
+
+	protected function buildItunesImage(DOMNode $parent)
+	{
+		if ($this->itunes_image_url != '') {
+			$document = $parent->ownerDocument;
+
+			$image_node = $document->createElementNS(
+				Castanet::ITUNES_NAMESPACE,
+				'image'
+			);
+
+			$image_node->setAttribute('href', $this->itunes_image_url);
+
+			$parent->appendChild($image_node);
+		}
+	}
+
+	// }}}
 	// {{{ protected function buildDescription()
 
 	protected function buildDescription(DOMNode $parent)
@@ -356,25 +346,6 @@ class Castanet_Item
 	}
 
 	// }}}
-	// {{{ protected function buildItunesImage()
-
-	protected function buildItunesImage(DOMNode $parent)
-	{
-		if ($this->image_url != '') {
-			$document = $parent->ownerDocument;
-
-			$image_node = $document->createElementNS(
-				Castanet::ITUNES_NAMESPACE,
-				'image'
-			);
-
-			$image_node->setAttribute('href', $this->image_url);
-
-			$parent->appendChild($image_node);
-		}
-	}
-
-	// }}}
 	// {{{ protected function buildMediaEnclosure()
 
 	protected function buildMediaEnclosure(DOMNode $parent)
@@ -386,24 +357,6 @@ class Castanet_Item
 		$node->setAttribute('length', $this->media_size);
 		$node->setAttribute('type', $this->media_mime_type);
 		$parent->appendChild($node);
-	}
-
-	// }}}
-	// {{{ protected function buildImageEnclosure()
-
-	protected function buildImageEnclosure(DOMNode $parent)
-	{
-		if ($this->image_url != '' &&
-			$this->image_mime_type != '' &&
-			$this->image_size > 0) {
-			$document = $parent->ownerDocument;
-
-			$node = $document->createElement('enclosure');
-			$node->setAttribute('url', $this->image_url);
-			$node->setAttribute('length', $this->image_size);
-			$node->setAttribute('type', $this->image_mime_type);
-			$parent->appendChild($node);
-		}
 	}
 
 	// }}}
