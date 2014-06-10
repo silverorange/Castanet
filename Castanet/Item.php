@@ -38,6 +38,11 @@ class Castanet_Item
 	/**
 	 * @var string
 	 */
+	protected $itunes_image_url;
+
+	/**
+	 * @var string
+	 */
 	protected $media_url;
 
 	/**
@@ -168,6 +173,14 @@ class Castanet_Item
 	}
 
 	// }}}
+	// {{{ public function setItunesImage()
+
+	public function setItunesImage($url)
+	{
+		$this->itunes_image_url = strval($url);
+	}
+
+	// }}}
 	// {{{ public function build()
 
 	public function build(DOMNode $parent)
@@ -182,6 +195,7 @@ class Castanet_Item
 		$this->buildGuid($item);
 		$this->buildItunesSubtitle($item);
 		$this->buildItunesSummary($item);
+		$this->buildItunesImage($item);
 		$this->buildDescription($item);
 		$this->buildPublishDate($item);
 		$this->buildMediaEnclosure($item);
@@ -277,6 +291,25 @@ class Castanet_Item
 
 			$node->appendChild($text);
 			$parent->appendChild($node);
+		}
+	}
+
+	// }}}
+	// {{{ protected function buildItunesImage()
+
+	protected function buildItunesImage(DOMNode $parent)
+	{
+		if ($this->itunes_image_url != '') {
+			$document = $parent->ownerDocument;
+
+			$image_node = $document->createElementNS(
+				Castanet::ITUNES_NAMESPACE,
+				'image'
+			);
+
+			$image_node->setAttribute('href', $this->itunes_image_url);
+
+			$parent->appendChild($image_node);
 		}
 	}
 
