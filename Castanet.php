@@ -6,7 +6,7 @@
  * @package   Castanet
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Charles Waddell <charles@silverorange.com>
- * @copyright 2011-2015 silverorange
+ * @copyright 2011-2016 silverorange
  * @license   http://www.opensource.org/licenses/mit-license.html MIT License
  */
 abstract class Castanet
