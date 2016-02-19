@@ -40,7 +40,7 @@ PEAR::setErrorHandling(PEAR_ERROR_DIE);
 $api_version     = '0.1.0';
 $api_state       = 'beta';
 
-$release_version = '0.1.4';
+$release_version = '0.1.5';
 $release_state   = 'beta';
 $release_notes   = 'initial release';
 
