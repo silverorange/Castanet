@@ -28,7 +28,8 @@
 		"source": "https://github.com/silverorange/Castanet"
 	},
 	"require": {
-		"php": ">=5.2.1"
+		"php": ">=5.2.1",
+		"ext-dom": "*"
 	},
 	"autoload": {
 		"psr-0": {
