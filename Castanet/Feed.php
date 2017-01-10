@@ -79,6 +79,16 @@ class Castanet_Feed
 	/**
 	 * @var string
 	 */
+	protected $itunes_category;
+
+	/**
+	 * @var string
+	 */
+	protected $itunes_subcategory;
+
+	/**
+	 * @var string
+	 */
 	protected $atom_link;
 
 	/**
@@ -189,6 +199,15 @@ class Castanet_Feed
 	}
 
 	// }}}
+	// {{{ public function setItunesCategory()
+
+	public function setItunesCategory($itunes_category, $itunes_subcategory)
+	{
+		$this->itunes_category = strval($itunes_category);
+		$this->itunes_subcategory = strval($itunes_subcategory);
+	}
+
+	// }}}
 	// {{{ public function setItunesOwnerEmail()
 
 	public function setItunesOwnerEmail($itunes_email)
@@ -261,6 +280,7 @@ class Castanet_Feed
 		$this->buildCopyright($channel);
 		$this->buildImage($channel);
 		$this->buildManagingEditor($channel);
+		$this->buildItunesCategory($channel);
 		$this->buildItunesAuthor($channel);
 		$this->buildItunesOwner($channel);
 		$this->buildItunesImage($channel);
@@ -343,6 +363,35 @@ class Castanet_Feed
 					'name'
 				);
 				$child_node->appendChild($text);
+				$node->appendChild($child_node);
+			}
+
+			$parent->appendChild($node);
+		}
+	}
+
+	// }}}
+	// {{{ protected function buildItunesCategory()
+
+	protected function buildItunesCategory(DOMNode $parent)
+	{
+		if ($this->itunes_category != '') {
+			$document = $parent->ownerDocument;
+
+			$node = $document->createElementNS(
+				Castanet::ITUNES_NAMESPACE,
+				'category'
+			);
+			$node->setAttribute('text', $this->itunes_category); 
+
+
+			if($this->itunes_subcategory!= ''){
+				$child_node = $document->createElementNS(
+					Castanet::ITUNES_NAMESPACE,
+					'category'
+				);
+
+				$child_node->setAttribute('text', $this->itunes_subcategory); 
 				$node->appendChild($child_node);
 			}
 
