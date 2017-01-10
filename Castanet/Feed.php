@@ -351,9 +351,9 @@ class Castanet_Feed
 				Castanet::ATOM_NAMESPACE,
 				'link'
 			);
-			$image_node->setAttribute('href', $this->atom_link); 
-			$image_node->setAttribute('rel', 'self');
-			$image_node->setAttribute('type', 'application/rss+xml');
+			$node->setAttribute('href', $this->atom_link); 
+			$node->setAttribute('rel', 'self');
+			$node->setAttribute('type', 'application/rss+xml');
 
 			$parent->appendChild($node);
 		}
