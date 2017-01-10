@@ -54,6 +54,11 @@ class Castanet_Feed
 	/**
 	 * @var integer
 	 */
+	protected $small_image_url;
+
+	/**
+	 * @var integer
+	 */
 	protected $image_width;
 
 	/**
@@ -167,9 +172,19 @@ class Castanet_Feed
 	// }}}
 	// {{{ public function setImage()
 
-	public function setImage($url, $width, $height)
+	public function setImage($url)
 	{
+		// For Apple-sized images (1400x1400 px and up, always square)
 		$this->image_url = strval($url);
+	}
+
+	// }}}
+	// {{{ public function setImage()
+
+	public function setSmallImage($url, $width, $height)
+	{
+		// For standard RSS images (max 144x400 px)
+		$this->small_image_url = strval($url);
 		$this->image_width = intval($width);
 		$this->image_height = intval($height);
 	}
@@ -553,13 +568,14 @@ class Castanet_Feed
 
 	protected function buildImage(DOMNode $parent)
 	{
-		if ($this->image_url != '') {
+		// The standard RSS image element should be a max of 144x400px
+		if ($this->small_image_url != '') {
 			$document = $parent->ownerDocument;
 
 			$image_node = $document->createElement('image');
 			$parent->appendChild($image_node);
 
-			$node = $document->createElement('url', $this->image_url);
+			$node = $document->createElement('url', $this->small_image_url);
 			$image_node->appendChild($node);
 
 			$title = $document->createTextNode($this->title);
