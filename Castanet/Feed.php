@@ -74,6 +74,11 @@ class Castanet_Feed
 	/**
 	 * @var string
 	 */
+	protected $itunes_owner;
+
+	/**
+	 * @var string
+	 */
 	protected $atom_link;
 
 	/**
@@ -184,11 +189,19 @@ class Castanet_Feed
 	}
 
 	// }}}
-	// {{{ public function setItunesAuthor()
+	// {{{ public function setItunesOwnerEmail()
 
-	public function setItunesEmail($itunes_email)
+	public function setItunesOwnerEmail($itunes_email)
 	{
 		$this->itunes_email = strval($itunes_email);
+	}
+
+	// }}}
+	// {{{ public function setItunesOwner()
+
+	public function setItunesOwner($itunes_owner)
+	{
+		$this->itunes_owner = strval($itunes_owner);
 	}
 
 	// }}}
@@ -249,7 +262,7 @@ class Castanet_Feed
 		$this->buildImage($channel);
 		$this->buildManagingEditor($channel);
 		$this->buildItunesAuthor($channel);
-		$this->buildItunesEmail($channel);
+		$this->buildItunesOwner($channel);
 		$this->buildItunesImage($channel);
 		$this->buildItunesExplicit($channel);
 		$this->buildItunesBlock($channel);
@@ -301,21 +314,38 @@ class Castanet_Feed
 	}
 
 	// }}}
-	// {{{ protected function buildItunesEmail()
+	// {{{ protected function buildItunesOwner()
 
-	protected function buildItunesEmail(DOMNode $parent)
+	protected function buildItunesOwner(DOMNode $parent)
 	{
-		if ($this->managing_editor != '') {
+		if ($this->itunes_email != '' || $this->itunes_owner != '') {
 			$document = $parent->ownerDocument;
 
-			$text = $document->createTextNode($this->itunes_email);
 			$node = $document->createElementNS(
 				Castanet::ITUNES_NAMESPACE,
-				'email'
+				'owner'
 			);
 
+			if($this->itunes_email!= ''){
+				$text = $document->createTextNode($this->itunes_email);
+				$child_node = $document->createElementNS(
+					Castanet::ITUNES_NAMESPACE,
+					'email'
+				);
+				$child_node->appendChild($text);
+				$node->appendChild($child_node);
+			}
 
-			$node->appendChild($text);
+			if($this->itunes_owner!= ''){
+				$text = $document->createTextNode($this->itunes_owner);
+				$child_node = $document->createElementNS(
+					Castanet::ITUNES_NAMESPACE,
+					'name'
+				);
+				$child_node->appendChild($text);
+				$node->appendChild($child_node);
+			}
+
 			$parent->appendChild($node);
 		}
 	}
