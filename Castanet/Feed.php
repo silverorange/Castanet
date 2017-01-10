@@ -69,6 +69,11 @@ class Castanet_Feed
 	/**
 	 * @var string
 	 */
+	protected $itunes_email;
+
+	/**
+	 * @var string
+	 */
 	protected $atom_link;
 
 	/**
@@ -181,6 +186,14 @@ class Castanet_Feed
 	// }}}
 	// {{{ public function setItunesAuthor()
 
+	public function setItunesEmail($itunes_email)
+	{
+		$this->itunes_email = strval($itunes_email);
+	}
+
+	// }}}
+	// {{{ public function setItunesAuthor()
+
 	public function setItunesAuthor($itunes_author)
 	{
 		$this->itunes_author = strval($itunes_author);
@@ -236,6 +249,7 @@ class Castanet_Feed
 		$this->buildImage($channel);
 		$this->buildManagingEditor($channel);
 		$this->buildItunesAuthor($channel);
+		$this->buildItunesEmail($channel);
 		$this->buildItunesImage($channel);
 		$this->buildItunesExplicit($channel);
 		$this->buildItunesBlock($channel);
@@ -280,6 +294,26 @@ class Castanet_Feed
 
 			$text = $document->createTextNode($this->managing_editor);
 			$node = $document->createElement('managingEditor');
+
+			$node->appendChild($text);
+			$parent->appendChild($node);
+		}
+	}
+
+	// }}}
+	// {{{ protected function buildItunesEmail()
+
+	protected function buildItunesEmail(DOMNode $parent)
+	{
+		if ($this->managing_editor != '') {
+			$document = $parent->ownerDocument;
+
+			$text = $document->createTextNode($this->itunes_email);
+			$node = $document->createElementNS(
+				Castanet::ITUNES_NAMESPACE,
+				'email'
+			);
+
 
 			$node->appendChild($text);
 			$parent->appendChild($node);
