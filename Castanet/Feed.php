@@ -67,6 +67,11 @@ class Castanet_Feed
 	protected $itunes_author;
 
 	/**
+	 * @var string
+	 */
+	protected $atom_link;
+
+	/**
 	 * @var boolean
 	 */
 	protected $itunes_explicit = false;
@@ -166,6 +171,14 @@ class Castanet_Feed
 	}
 
 	// }}}
+	// {{{ public function setAtomLink()
+
+	public function setAtomLink($atom_link)
+	{
+		$this->atom_link = strval($atom_link);
+	}
+
+	// }}}
 	// {{{ public function setItunesAuthor()
 
 	public function setItunesAuthor($itunes_author)
@@ -215,6 +228,7 @@ class Castanet_Feed
 		$parent->appendChild($channel);
 
 		$this->buildTitle($channel);
+		$this->buildAtomLink($channel);
 		$this->buildLink($channel);
 		$this->buildDescription($channel);
 		$this->buildLanguage($channel);
@@ -287,6 +301,26 @@ class Castanet_Feed
 			);
 
 			$node->appendChild($text);
+			$parent->appendChild($node);
+		}
+	}
+
+	// }}}
+	// {{{ protected function buildAtomLink()
+
+	protected function buildAtomLink(DOMNode $parent)
+	{
+		if ($this->atom_link != '') {
+			$document = $parent->ownerDocument;
+
+			$node = $document->createElementNS(
+				Castanet::ATOM_NAMESPACE,
+				'link'
+			);
+			$image_node->setAttribute('href', $this->atom_link); 
+			$image_node->setAttribute('rel', 'self');
+			$image_node->setAttribute('type', 'application/rss+xml');
+
 			$parent->appendChild($node);
 		}
 	}
