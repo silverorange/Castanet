@@ -49,12 +49,12 @@ class Castanet_Feed
 	/**
 	 * @var string
 	 */
-	protected $image_url;
+	protected $itunes_image_url;
 
 	/**
-	 * @var integer
+	 * @var string
 	 */
-	protected $small_image_url;
+	protected $image_url;
 
 	/**
 	 * @var integer
@@ -82,9 +82,9 @@ class Castanet_Feed
 	protected $itunes_owner;
 
 	/**
-	 * @var string
+	 * @var array
 	 */
-	protected $itunes_category;
+	protected $itunes_categories = array();
 
 	/**
 	 * @var string
@@ -170,21 +170,21 @@ class Castanet_Feed
 	}
 
 	// }}}
-	// {{{ public function setImage()
+	// {{{ public function setItunesImage()
 
-	public function setImage($url)
+	public function setItunesImage($url)
 	{
 		// For Apple-sized images (1400x1400 px and up, always square)
-		$this->image_url = strval($url);
+		$this->itunes_image_url = strval($url);
 	}
 
 	// }}}
 	// {{{ public function setImage()
 
-	public function setSmallImage($url, $width, $height)
+	public function setImage($url, $width, $height)
 	{
 		// For standard RSS images (max 144x400 px)
-		$this->small_image_url = strval($url);
+		$this->image_url = strval($url);
 		$this->image_width = intval($width);
 		$this->image_height = intval($height);
 	}
@@ -214,12 +214,14 @@ class Castanet_Feed
 	}
 
 	// }}}
-	// {{{ public function setItunesCategory()
+	// {{{ public function setItunesCategories()
 
-	public function setItunesCategory($itunes_category, $itunes_subcategory)
+	public function setItunesCategories($itunes_categories)
 	{
-		$this->itunes_category = strval($itunes_category);
-		$this->itunes_subcategory = strval($itunes_subcategory);
+		$this->itunes_categories = array();
+		foreach($itunes_categories as $subcategory){
+			$this->itunes_categories[] = strval($subcategory);
+		}
 	}
 
 	// }}}
@@ -295,7 +297,7 @@ class Castanet_Feed
 		$this->buildCopyright($channel);
 		$this->buildImage($channel);
 		$this->buildManagingEditor($channel);
-		$this->buildItunesCategory($channel);
+		$this->buildItunesCategories($channel);
 		$this->buildItunesAuthor($channel);
 		$this->buildItunesOwner($channel);
 		$this->buildItunesImage($channel);
@@ -361,7 +363,7 @@ class Castanet_Feed
 				'owner'
 			);
 
-			if ($this->itunes_email != ''){
+			if ($this->itunes_email != '') {
 				$text = $document->createTextNode($this->itunes_email);
 				$child_node = $document->createElementNS(
 					Castanet::ITUNES_NAMESPACE,
@@ -371,7 +373,7 @@ class Castanet_Feed
 				$node->appendChild($child_node);
 			}
 
-			if ($this->itunes_owner != ''){
+			if ($this->itunes_owner != '') {
 				$text = $document->createTextNode($this->itunes_owner);
 				$child_node = $document->createElementNS(
 					Castanet::ITUNES_NAMESPACE,
@@ -386,31 +388,20 @@ class Castanet_Feed
 	}
 
 	// }}}
-	// {{{ protected function buildItunesCategory()
+	// {{{ protected function buildItunesCategories()
 
-	protected function buildItunesCategory(DOMNode $parent)
+	protected function buildItunesCategories(DOMNode $parent)
 	{
-		if ($this->itunes_category != '') {
-			$document = $parent->ownerDocument;
-
-			$node = $document->createElementNS(
+		$document = $parent->ownerDocument;
+		foreach($this->itunes_categories as $subcategory){
+			$child_node = $document->createElementNS(
 				Castanet::ITUNES_NAMESPACE,
 				'category'
 			);
-			$node->setAttribute('text', $this->itunes_category); 
 
-
-			if ($this->itunes_subcategory != ''){
-				$child_node = $document->createElementNS(
-					Castanet::ITUNES_NAMESPACE,
-					'category'
-				);
-
-				$child_node->setAttribute('text', $this->itunes_subcategory); 
-				$node->appendChild($child_node);
-			}
-
-			$parent->appendChild($node);
+			$child_node->setAttribute('text', $subcategory); 
+			$parent->appendChild($child_node);
+			$parent = $child_node;
 		}
 	}
 
@@ -549,7 +540,7 @@ class Castanet_Feed
 
 	protected function buildItunesImage(DOMNode $parent)
 	{
-		if ($this->image_url != '') {
+		if ($this->itunes_image_url != '') {
 			$document = $parent->ownerDocument;
 
 			$image_node = $document->createElementNS(
@@ -557,7 +548,7 @@ class Castanet_Feed
 				'image'
 			);
 
-			$image_node->setAttribute('href', $this->image_url);
+			$image_node->setAttribute('href', $this->itunes_image_url);
 
 			$parent->appendChild($image_node);
 		}
@@ -569,13 +560,13 @@ class Castanet_Feed
 	protected function buildImage(DOMNode $parent)
 	{
 		// The standard RSS image element should be a max of 144x400px
-		if ($this->small_image_url != '') {
+		if ($this->image_url != '') {
 			$document = $parent->ownerDocument;
 
 			$image_node = $document->createElement('image');
 			$parent->appendChild($image_node);
 
-			$node = $document->createElement('url', $this->small_image_url);
+			$node = $document->createElement('url', $this->image_url);
 			$image_node->appendChild($node);
 
 			$title = $document->createTextNode($this->title);
