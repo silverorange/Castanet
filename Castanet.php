@@ -19,5 +19,7 @@ abstract class Castanet
 
 	const ITUNES_NAMESPACE = 'http://www.itunes.com/dtds/podcast-1.0.dtd';
 
+	const ATOM_NAMESPACE = 'http://www.w3.org/2005/Atom';
+
 	// }}}
 }

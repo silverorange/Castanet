@@ -49,6 +49,11 @@ class Castanet_Feed
 	/**
 	 * @var string
 	 */
+	protected $itunes_image_url;
+
+	/**
+	 * @var string
+	 */
 	protected $image_url;
 
 	/**
@@ -65,6 +70,36 @@ class Castanet_Feed
 	 * @var string
 	 */
 	protected $itunes_author;
+
+	/**
+	 * @var string
+	 */
+	protected $itunes_email;
+
+	/**
+	 * @var string
+	 */
+	protected $itunes_owner;
+
+	/**
+	 * @var string
+	 */
+	protected $itunes_category;
+
+	/**
+	 * @var array
+	 */
+	protected $itunes_subcategories = array();
+
+	/**
+	 * @var string
+	 */
+	protected $itunes_subcategory;
+
+	/**
+	 * @var string
+	 */
+	protected $atom_link;
 
 	/**
 	 * @var boolean
@@ -140,10 +175,20 @@ class Castanet_Feed
 	}
 
 	// }}}
+	// {{{ public function setItunesImage()
+
+	public function setItunesImage($url)
+	{
+		// For Apple-sized images (1400x1400 px and up, always square)
+		$this->itunes_image_url = strval($url);
+	}
+
+	// }}}
 	// {{{ public function setImage()
 
 	public function setImage($url, $width, $height)
 	{
+		// For standard RSS images (max 144x400 px)
 		$this->image_url = strval($url);
 		$this->image_width = intval($width);
 		$this->image_height = intval($height);
@@ -163,6 +208,43 @@ class Castanet_Feed
 	public function setItunesBlock($itunes_block)
 	{
 		$this->itunes_block = ($itunes_block) ? true : false;
+	}
+
+	// }}}
+	// {{{ public function setAtomLink()
+
+	public function setAtomLink($atom_link)
+	{
+		$this->atom_link = strval($atom_link);
+	}
+
+	// }}}
+	// {{{ public function setItunesCategories()
+
+	public function setItunesCategories($itunes_category, array $itunes_subcategories = array())
+	{
+		$this->itunes_category = $itunes_category;
+
+		$this->itunes_subcategories = array();
+		foreach ($itunes_subcategories as $subcategory) {
+			$this->itunes_subcategories[] = strval($subcategory);
+		}
+	}
+
+	// }}}
+	// {{{ public function setItunesOwnerEmail()
+
+	public function setItunesOwnerEmail($itunes_email)
+	{
+		$this->itunes_email = strval($itunes_email);
+	}
+
+	// }}}
+	// {{{ public function setItunesOwner()
+
+	public function setItunesOwner($itunes_owner)
+	{
+		$this->itunes_owner = strval($itunes_owner);
 	}
 
 	// }}}
@@ -215,13 +297,16 @@ class Castanet_Feed
 		$parent->appendChild($channel);
 
 		$this->buildTitle($channel);
+		$this->buildAtomLink($channel);
 		$this->buildLink($channel);
 		$this->buildDescription($channel);
 		$this->buildLanguage($channel);
 		$this->buildCopyright($channel);
 		$this->buildImage($channel);
 		$this->buildManagingEditor($channel);
+		$this->buildItunesCategories($channel);
 		$this->buildItunesAuthor($channel);
+		$this->buildItunesOwner($channel);
 		$this->buildItunesImage($channel);
 		$this->buildItunesExplicit($channel);
 		$this->buildItunesBlock($channel);
@@ -273,6 +358,67 @@ class Castanet_Feed
 	}
 
 	// }}}
+	// {{{ protected function buildItunesOwner()
+
+	protected function buildItunesOwner(DOMNode $parent)
+	{
+		if ($this->itunes_email != '' || $this->itunes_owner != '') {
+			$document = $parent->ownerDocument;
+
+			$node = $document->createElementNS(
+				Castanet::ITUNES_NAMESPACE,
+				'owner'
+			);
+
+			if ($this->itunes_email != '') {
+				$text = $document->createTextNode($this->itunes_email);
+				$child_node = $document->createElementNS(
+					Castanet::ITUNES_NAMESPACE,
+					'email'
+				);
+				$child_node->appendChild($text);
+				$node->appendChild($child_node);
+			}
+
+			if ($this->itunes_owner != '') {
+				$text = $document->createTextNode($this->itunes_owner);
+				$child_node = $document->createElementNS(
+					Castanet::ITUNES_NAMESPACE,
+					'name'
+				);
+				$child_node->appendChild($text);
+				$node->appendChild($child_node);
+			}
+
+			$parent->appendChild($node);
+		}
+	}
+
+	// }}}
+	// {{{ protected function buildItunesCategories()
+
+	protected function buildItunesCategories(DOMNode $parent)
+	{
+		$document = $parent->ownerDocument;
+		$node = $document->createElementNS(
+			Castanet::ITUNES_NAMESPACE,
+			'category'
+		);
+		$node->setAttribute('text', $this->itunes_category); 
+		$parent->appendChild($node);
+
+		foreach ($this->itunes_subcategories as $subcategory) {
+			$child_node = $document->createElementNS(
+				Castanet::ITUNES_NAMESPACE,
+				'category'
+			);
+
+			$child_node->setAttribute('text', $subcategory); 
+			$node->appendChild($child_node);
+		}
+	}
+
+	// }}}
 	// {{{ protected function buildItunesAuthor()
 
 	protected function buildItunesAuthor(DOMNode $parent)
@@ -287,6 +433,26 @@ class Castanet_Feed
 			);
 
 			$node->appendChild($text);
+			$parent->appendChild($node);
+		}
+	}
+
+	// }}}
+	// {{{ protected function buildAtomLink()
+
+	protected function buildAtomLink(DOMNode $parent)
+	{
+		if ($this->atom_link != '') {
+			$document = $parent->ownerDocument;
+
+			$node = $document->createElementNS(
+				Castanet::ATOM_NAMESPACE,
+				'link'
+			);
+			$node->setAttribute('href', $this->atom_link); 
+			$node->setAttribute('rel', 'self');
+			$node->setAttribute('type', 'application/rss+xml');
+
 			$parent->appendChild($node);
 		}
 	}
@@ -387,7 +553,7 @@ class Castanet_Feed
 
 	protected function buildItunesImage(DOMNode $parent)
 	{
-		if ($this->image_url != '') {
+		if ($this->itunes_image_url != '') {
 			$document = $parent->ownerDocument;
 
 			$image_node = $document->createElementNS(
@@ -395,7 +561,7 @@ class Castanet_Feed
 				'image'
 			);
 
-			$image_node->setAttribute('href', $this->image_url);
+			$image_node->setAttribute('href', $this->itunes_image_url);
 
 			$parent->appendChild($image_node);
 		}
@@ -406,6 +572,7 @@ class Castanet_Feed
 
 	protected function buildImage(DOMNode $parent)
 	{
+		// The standard RSS image element should be a max of 144x400px
 		if ($this->image_url != '') {
 			$document = $parent->ownerDocument;
 
