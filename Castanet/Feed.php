@@ -82,9 +82,14 @@ class Castanet_Feed
 	protected $itunes_owner;
 
 	/**
+	 * @var string
+	 */
+	protected $itunes_category;
+
+	/**
 	 * @var array
 	 */
-	protected $itunes_categories = array();
+	protected $itunes_subcategories = array();
 
 	/**
 	 * @var string
@@ -216,11 +221,15 @@ class Castanet_Feed
 	// }}}
 	// {{{ public function setItunesCategories()
 
-	public function setItunesCategories($itunes_categories)
+	public function setItunesCategories($itunes_category, array $itunes_subcategories = null)
 	{
-		$this->itunes_categories = array();
-		foreach($itunes_categories as $subcategory){
-			$this->itunes_categories[] = strval($subcategory);
+		$this->itunes_category = $itunes_category;
+
+		$this->itunes_subcategories = array();
+		if (!is_null($itunes_subcategories)) {
+			foreach ($itunes_subcategories as $subcategory) {
+				$this->itunes_subcategories[] = strval($subcategory);
+			}
 		}
 	}
 
@@ -393,15 +402,21 @@ class Castanet_Feed
 	protected function buildItunesCategories(DOMNode $parent)
 	{
 		$document = $parent->ownerDocument;
-		foreach($this->itunes_categories as $subcategory){
+		$node = $document->createElementNS(
+			Castanet::ITUNES_NAMESPACE,
+			'category'
+		);
+		$node->setAttribute('text', $this->itunes_category); 
+		$parent->appendChild($node);
+
+		foreach ($this->itunes_subcategories as $subcategory) {
 			$child_node = $document->createElementNS(
 				Castanet::ITUNES_NAMESPACE,
 				'category'
 			);
 
 			$child_node->setAttribute('text', $subcategory); 
-			$parent->appendChild($child_node);
-			$parent = $child_node;
+			$node->appendChild($child_node);
 		}
 	}
 
