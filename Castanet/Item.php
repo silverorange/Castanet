@@ -246,7 +246,7 @@ class Castanet_Item
 			$node = $document->createElement('guid');
 
 			if (!$this->guid_is_permalink) {
-				$node->setAttribute('isPermalink', 'false');
+				$node->setAttribute('isPermaLink', 'false');
 			}
 
 			$node->appendChild($text);
