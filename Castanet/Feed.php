@@ -361,7 +361,7 @@ class Castanet_Feed
 				'owner'
 			);
 
-			if($this->itunes_email!= ''){
+			if ($this->itunes_email != ''){
 				$text = $document->createTextNode($this->itunes_email);
 				$child_node = $document->createElementNS(
 					Castanet::ITUNES_NAMESPACE,
@@ -371,7 +371,7 @@ class Castanet_Feed
 				$node->appendChild($child_node);
 			}
 
-			if($this->itunes_owner!= ''){
+			if ($this->itunes_owner != ''){
 				$text = $document->createTextNode($this->itunes_owner);
 				$child_node = $document->createElementNS(
 					Castanet::ITUNES_NAMESPACE,
@@ -400,7 +400,7 @@ class Castanet_Feed
 			$node->setAttribute('text', $this->itunes_category); 
 
 
-			if($this->itunes_subcategory!= ''){
+			if ($this->itunes_subcategory != ''){
 				$child_node = $document->createElementNS(
 					Castanet::ITUNES_NAMESPACE,
 					'category'
