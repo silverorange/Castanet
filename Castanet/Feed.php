@@ -221,15 +221,13 @@ class Castanet_Feed
 	// }}}
 	// {{{ public function setItunesCategories()
 
-	public function setItunesCategories($itunes_category, array $itunes_subcategories = null)
+	public function setItunesCategories($itunes_category, array $itunes_subcategories = array())
 	{
 		$this->itunes_category = $itunes_category;
 
 		$this->itunes_subcategories = array();
-		if (!is_null($itunes_subcategories)) {
-			foreach ($itunes_subcategories as $subcategory) {
-				$this->itunes_subcategories[] = strval($subcategory);
-			}
+		foreach ($itunes_subcategories as $subcategory) {
+			$this->itunes_subcategories[] = strval($subcategory);
 		}
 	}
 
