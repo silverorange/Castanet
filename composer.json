@@ -43,8 +43,5 @@
     "psr-0": {
       "Castanet" : ""
     }
-  },
-  "include-path": [
-    "./"
-  ]
+  }
 }
