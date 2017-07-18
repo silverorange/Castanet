@@ -1,49 +1,49 @@
 {
-	"name": "silverorange/castanet",
-	"description": "Podcast feed generation including iTunes-specific fields.",
-	"type": "library",
-	"keywords": [ "podcast", "rss", "feed", "itunes" ],
-	"homepage": "https://github.com/silverorange/Castanet",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Charles Waddell",
-			"email": "charles@silverorange.com"
-		},
-		{
-			"name": "Isaac Grant",
-			"email": "isaac@silverorange.com"
-		},
-		{
-			"name": "Michael Gauthier",
-			"email": "mike@silverorange.com"
-		},
-		{
-			"name": "Nick Burka",
-			"email": "nick@silverorange.com"
-		}
-	],
-	"support": {
-		"issues": "https://github.com/silverorange/Castanet/issues",
-		"source": "https://github.com/silverorange/Castanet"
-	},
-	"require": {
-		"php": ">=5.2.1",
-		"ext-dom": "*"
-	},
-	"require-dev": {
-		"silverorange/coding-standard": "^0.1.0"
-	},
-	"scripts": {
-		"post-install-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/silverorange/coding-standard/src",
-		"post-update-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/silverorange/coding-standard/src"
-	},
-	"autoload": {
-		"psr-0": {
-			"Castanet" : ""
-		}
-	},
-	"include-path": [
-		"./"
-	]
+  "name": "silverorange/castanet",
+  "description": "Podcast feed generation including iTunes-specific fields.",
+  "type": "library",
+  "keywords": [ "podcast", "rss", "feed", "itunes" ],
+  "homepage": "https://github.com/silverorange/Castanet",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Charles Waddell",
+      "email": "charles@silverorange.com"
+    },
+    {
+      "name": "Isaac Grant",
+      "email": "isaac@silverorange.com"
+    },
+    {
+      "name": "Michael Gauthier",
+      "email": "mike@silverorange.com"
+    },
+    {
+      "name": "Nick Burka",
+      "email": "nick@silverorange.com"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/silverorange/Castanet/issues",
+    "source": "https://github.com/silverorange/Castanet"
+  },
+  "require": {
+    "php": ">=5.2.1",
+    "ext-dom": "*"
+  },
+  "require-dev": {
+    "silverorange/coding-standard": "^0.1.0"
+  },
+  "scripts": {
+    "post-install-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/silverorange/coding-standard/src",
+    "post-update-cmd": "./vendor/bin/phpcs --config-set installed_paths vendor/silverorange/coding-standard/src"
+  },
+  "autoload": {
+    "psr-0": {
+      "Castanet" : ""
+    }
+  },
+  "include-path": [
+    "./"
+  ]
 }

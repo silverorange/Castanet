@@ -11,15 +11,15 @@
  */
 abstract class Castanet
 {
-	// {{{ constants
+    // {{{ constants
 
-	const RSS_VERSION = '2.0';
+    const RSS_VERSION = '2.0';
 
-	const XMLNS_NAMESPACE = 'http://www.w3.org/2000/xmlns/';
+    const XMLNS_NAMESPACE = 'http://www.w3.org/2000/xmlns/';
 
-	const ITUNES_NAMESPACE = 'http://www.itunes.com/dtds/podcast-1.0.dtd';
+    const ITUNES_NAMESPACE = 'http://www.itunes.com/dtds/podcast-1.0.dtd';
 
-	const ATOM_NAMESPACE = 'http://www.w3.org/2005/Atom';
+    const ATOM_NAMESPACE = 'http://www.w3.org/2005/Atom';
 
-	// }}}
+    // }}}
 }
