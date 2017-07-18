@@ -12,8 +12,8 @@ insert_final_newline = true
 indent_style = space
 indent_size = 2
 
-[*.{php,json}]
-indent_style = tab
+[*.php]
+indent_style = space
 indent_size = 4
 
 [*.{diff,md}]
