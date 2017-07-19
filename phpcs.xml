@@ -7,7 +7,7 @@
   <arg name="warning-severity" value="0" />
   <arg value="p" /><!-- show progress -->
 
-  <file>Castanet.php</file>
+  <file>./Castanet.php</file>
   <file>./Castanet</file>
 
   <rule ref="PEAR" />
