@@ -1,117 +1,195 @@
 <?php
 
+/**
+ * This file contains the feed object for the Castanet package
+ *
+ * PHP version 5, 7
+ *
+ * LICENSE:
+ *
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2011-2017 silverorange
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to
+ * deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ * IN THE SOFTWARE.
+ *
+ * @category  XML
+ * @package   Castanet
+ * @author    Michael Gauthier <mike@silverorange.com>
+ * @author    Charles Waddell <charles@silverorange.com>
+ * @copyright 2011-2017 silverorange
+ * @license   http://www.opensource.org/licenses/mit-license.html MIT License
+ * @link      https://github.com/silverorange/castanet
+ */
+
 require_once 'Castanet.php';
 require_once 'Castanet/Item.php';
 
 /**
  * Class used to generate a podcast.
  *
+ * @category  XML
  * @package   Castanet
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Charles Waddell <charles@silverorange.com>
  * @copyright 2011-2016 silverorange
  * @license   http://www.opensource.org/licenses/mit-license.html MIT License
+ * @link      https://github.com/silverorange/castanet
  */
 class Castanet_Feed
 {
     // {{{ protected properties
 
     /**
+     * The title of this feed
+     *
      * @var string
      */
     protected $title;
 
     /**
+     * The web link of this feed
+     *
      * @var string
      */
     protected $link;
 
     /**
+     * The description of this feed
+     *
      * @var string
      */
     protected $description;
 
     /**
+     * The ISO 629-1 language of this feed
+
      * @var string
      */
     protected $language;
 
     /**
+     * The copyright attribution of this feed
+     *
      * @var string
      */
     protected $copyright;
 
     /**
+     * The managing editor of this feed
+     *
      * @var string
      */
     protected $managing_editor;
 
     /**
+     * The iTunes cover image of this feed
+     *
      * @var string
      */
     protected $itunes_image_url;
 
     /**
+     * The RSS image of this feed
+     *
      * @var string
      */
     protected $image_url;
 
     /**
+     * The width of the RSS image of this feed
+     *
      * @var integer
      */
     protected $image_width;
 
     /**
+     * The height of the RSS image of this feed
+     *
      * @var integer
      */
     protected $image_height;
 
     /**
+     * The iTunes author of this feed
+     *
      * @var string
      */
     protected $itunes_author;
 
     /**
+     * The iTunes email address of this feed
+     *
      * @var string
      */
     protected $itunes_email;
 
     /**
+     * The iTunes owner of this feed
+     *
      * @var string
      */
     protected $itunes_owner;
 
     /**
+     * The iTunes category of this feed
+     *
      * @var string
      */
     protected $itunes_category;
 
     /**
+     * The iTunes subcategories of this feed
+     *
+     * An array of strings.
+     *
      * @var array
      */
     protected $itunes_subcategories = array();
 
     /**
-     * @var string
-     */
-    protected $itunes_subcategory;
-
-    /**
+     * The Atom web link of this feed
+     *
      * @var string
      */
     protected $atom_link;
 
     /**
+     * Whether or not this feed is marked explicit for iTunes
+     *
      * @var boolean
      */
     protected $itunes_explicit = false;
 
     /**
+     * Whether or not this feed should be blocked from the automatic listing
+     * in iTunes
+     *
      * @var boolean
      */
     protected $itunes_block = false;
 
     /**
+     * The items of this feed
+     *
+     * An array of Castanet_Feed items.
+     *
      * @var array
      */
     protected $items = array();
