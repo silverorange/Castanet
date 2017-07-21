@@ -48,7 +48,7 @@ require_once 'Castanet/Item.php';
  * @package   Castanet
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Charles Waddell <charles@silverorange.com>
- * @copyright 2011-2016 silverorange
+ * @copyright 2011-2017 silverorange
  * @license   http://www.opensource.org/licenses/mit-license.html MIT License
  * @link      https://github.com/silverorange/castanet
  */
@@ -79,7 +79,7 @@ class Castanet_Feed
 
     /**
      * The ISO 629-1 language of this feed
-
+     *
      * @var string
      */
     protected $language;
@@ -396,7 +396,7 @@ class Castanet_Feed
      * Sets the iTunes category and subcategories for this feed
      *
      * Categories and subcategories must be selected from the list published
-     * by Applei at https://help.apple.com/itc/podcasts_connect/?lang=en#/itc9267a2f12
+     * by Apple at https://help.apple.com/itc/podcasts_connect/?lang=en#/itc9267a2f12
      *
      * @param string $itunes_category      the itunes category.
      * @param array  $itunes_subcategories optional. An array of subcategories.
