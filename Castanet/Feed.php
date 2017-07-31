@@ -38,9 +38,6 @@
  * @link      https://github.com/silverorange/castanet
  */
 
-require_once 'Castanet.php';
-require_once 'Castanet/Item.php';
-
 /**
  * Class used to generate a podcast.
  *
