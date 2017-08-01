@@ -10,5 +10,5 @@
   <file>./Castanet.php</file>
   <file>./Castanet</file>
 
-  <rule ref="PEAR" />
+  <rule ref="SilverorangePEAR" />
 </ruleset>
