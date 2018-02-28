@@ -32,7 +32,7 @@
     "ext-dom": "*"
   },
   "require-dev": {
-    "silverorange/coding-standard": "^0.6.0"
+    "silverorange/coding-standard": "^1.0.0"
   },
   "scripts": {
     "lint": "./vendor/bin/phpcs",
