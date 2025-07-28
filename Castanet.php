@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains package-level constants for the Castanet package
+ * This file contains package-level constants for the Castanet package.
  *
  * PHP version 5, 7
  *
@@ -30,48 +30,46 @@
  * IN THE SOFTWARE.
  *
  * @category  XML
- * @package   Castanet
+ *
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Charles Waddell <charles@silverorange.com>
  * @copyright 2011-2017 silverorange
  * @license   http://www.opensource.org/licenses/mit-license.html MIT License
- * @link      https://github.com/silverorange/castanet
+ *
+ * @see      https://github.com/silverorange/castanet
  */
 
 /**
- * Package-level constants
+ * Package-level constants.
  *
  * @category  XML
- * @package   Castanet
+ *
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Charles Waddell <charles@silverorange.com>
  * @copyright 2011-2017 silverorange
  * @license   http://www.opensource.org/licenses/mit-license.html MIT License
- * @link      https://github.com/silverorange/castanet
+ *
+ * @see      https://github.com/silverorange/castanet
  */
 abstract class Castanet
 {
-    // {{{ constants
+    /**
+     * Constant for RSS version to use in XML document.
+     */
+    public const RSS_VERSION = '2.0';
 
     /**
-     * Constant for RSS version to use in XML document
+     * Base XML namespace.
      */
-    const RSS_VERSION = '2.0';
+    public const XMLNS_NAMESPACE = 'http://www.w3.org/2000/xmlns/';
 
     /**
-     * Base XML namespace
+     * The iTunes namespace.
      */
-    const XMLNS_NAMESPACE = 'http://www.w3.org/2000/xmlns/';
+    public const ITUNES_NAMESPACE = 'http://www.itunes.com/dtds/podcast-1.0.dtd';
 
     /**
-     * The iTunes namespace
+     * Atom namespace.
      */
-    const ITUNES_NAMESPACE = 'http://www.itunes.com/dtds/podcast-1.0.dtd';
-
-    /**
-     * Atom namespace
-     */
-    const ATOM_NAMESPACE = 'http://www.w3.org/2005/Atom';
-
-    // }}}
+    public const ATOM_NAMESPACE = 'http://www.w3.org/2005/Atom';
 }

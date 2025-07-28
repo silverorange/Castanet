@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the item class for the Castanet package
+ * This file contains the item class for the Castanet package.
  *
  * PHP version 5, 7
  *
@@ -30,52 +30,52 @@
  * IN THE SOFTWARE.
  *
  * @category  XML
- * @package   Castanet
+ *
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Charles Waddell <charles@silverorange.com>
  * @copyright 2011-2017 silverorange
  * @license   http://www.opensource.org/licenses/mit-license.html MIT License
- * @link      https://github.com/silverorange/castanet
+ *
+ * @see      https://github.com/silverorange/castanet
  */
 
 /**
  * Class used to generate individual items in a podcast.
  *
  * @category  XML
- * @package   Castanet
+ *
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Charles Waddell <charles@silverorange.com>
  * @copyright 2011-2017 silverorange
  * @license   http://www.opensource.org/licenses/mit-license.html MIT License
- * @link      https://github.com/silverorange/castanet
+ *
+ * @see      https://github.com/silverorange/castanet
  */
 class Castanet_Item
 {
-    // {{{ protected properties
-
     /**
-     * Title of this item
+     * Title of this item.
      *
      * @var string
      */
     protected $title;
 
     /**
-     * Web link of this item
+     * Web link of this item.
      *
      * @var string
      */
     protected $link;
 
     /**
-     * Short description of this item
+     * Short description of this item.
      *
      * @var string
      */
     protected $description;
 
     /**
-     * Publish date of this item
+     * Publish date of this item.
      *
      * Formatted as RFC 3339 string.
      *
@@ -84,56 +84,56 @@ class Castanet_Item
     protected $publish_date;
 
     /**
-     * The iTunes cover image of this item
+     * The iTunes cover image of this item.
      *
      * @var string
      */
     protected $itunes_image_url;
 
     /**
-     * The URL of the media for this item
+     * The URL of the media for this item.
      *
      * @var string
      */
     protected $media_url;
 
     /**
-     * Size of the media of this item in bytes
+     * Size of the media of this item in bytes.
      *
-     * @var integer
+     * @var int
      */
     protected $media_size;
 
     /**
-     * Mime-type of the media of this item
+     * Mime-type of the media of this item.
      *
      * @var string
      */
     protected $media_mime_type;
 
     /**
-     * Duration of the media of this item in seconds
+     * Duration of the media of this item in seconds.
      *
-     * @var integer
+     * @var int
      */
     protected $media_duration;
 
     /**
-     * The iTunes subtitle of this item
+     * The iTunes subtitle of this item.
      *
      * @var string
      */
     protected $itunes_subtitle;
 
     /**
-     * The iTunes summary of this item
+     * The iTunes summary of this item.
      *
      * @var string
      */
     protected $itunes_summary;
 
     /**
-     * The globally unique identifier for this item
+     * The globally unique identifier for this item.
      *
      * Usually this is the web URL.
      *
@@ -142,88 +142,61 @@ class Castanet_Item
     protected $guid;
 
     /**
-     * Whether or not the GUID of this item is also a web permalink
-     *
-     * @var boolean
+     * Whether or not the GUID of this item is also a web permalink.
      */
-    protected $guid_is_permalink = true;
-
-    // }}}
-    // {{{ public function setTitle()
+    protected bool $guid_is_permalink = true;
 
     /**
-     * Sets the title of this item
+     * Sets the title of this item.
      *
-     * @param string $title the title of this item.
-     *
-     * @return void
+     * @param string $title the title of this item
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = strval($title);
     }
 
-    // }}}
-    // {{{ public function setLink()
-
     /**
-     * Sets the web link of this item
+     * Sets the web link of this item.
      *
-     * @param string $link the web link of this item.
-     *
-     * @return void
+     * @param string $link the web link of this item
      */
-    public function setLink($link)
+    public function setLink($link): void
     {
         $this->link = strval($link);
     }
 
-    // }}}
-    // {{{ public function setGuid()
-
     /**
-     * Sets the globally unique identifier fof this item
+     * Sets the globally unique identifier fof this item.
      *
-     * @param string  $guid         the globally unique identifier of this item.
-     * @param boolean $is_permalink optional. Whether or not the GUID is a
-     *                              web permalink.
-     *
-     * @return void
+     * @param string $guid         the globally unique identifier of this item
+     * @param bool   $is_permalink optional. Whether or not the GUID is a
+     *                             web permalink.
      */
-    public function setGuid($guid, $is_permalink = true)
+    public function setGuid($guid, $is_permalink = true): void
     {
         $this->guid = strval($guid);
         $this->guid_is_permalink = ($is_permalink) ? true : false;
     }
 
-    // }}}
-    // {{{ public function setDescription()
-
     /**
-     * Sets the short description of this item
+     * Sets the short description of this item.
      *
-     * @param string $description the short description of this item.
-     *
-     * @return void
+     * @param string $description the short description of this item
      */
-    public function setDescription($description)
+    public function setDescription($description): void
     {
         $this->description = strval($description);
     }
 
-    // }}}
-    // {{{ public function setPublishDate()
-
     /**
-     * Sets the publish date of this item
+     * Sets the publish date of this item.
      *
-     * @param string|DateTime $date the publish date of this item. Either a
+     * @param DateTime|string $date the publish date of this item. Either a
      *                              RFC 3339 formatted string or a DateTime
      *                              object.
-     *
-     * @return void
      */
-    public function setPublishDate($date)
+    public function setPublishDate($date): void
     {
         if ($date instanceof DateTime) {
             $date = $date->format('r');
@@ -231,125 +204,85 @@ class Castanet_Item
         $this->publish_date = $date;
     }
 
-    // }}}
-    // {{{ public function setMediaUrl()
-
     /**
-     * Sets the media URL of this item
+     * Sets the media URL of this item.
      *
-     * @param string $url the media URL of this item.
-     *
-     * @return void
+     * @param string $url the media URL of this item
      */
-    public function setMediaUrl($url)
+    public function setMediaUrl($url): void
     {
         $this->media_url = strval($url);
     }
 
-    // }}}
-    // {{{ public function setMediaSize()
-
     /**
-     * Sets the size of the media of this item
+     * Sets the size of the media of this item.
      *
-     * @param integer $size the size of the media of this item in bytes.
-     *
-     * @return void
+     * @param int $size the size of the media of this item in bytes
      */
-    public function setMediaSize($size)
+    public function setMediaSize($size): void
     {
         $this->media_size = intval($size);
     }
 
-    // }}}
-    // {{{ public function setMediaMimeType()
-
     /**
-     * Sets the mime-type of the media of this item
+     * Sets the mime-type of the media of this item.
      *
-     * @param string $mime_type the mime-type of the media of this item.
-     *
-     * @return void
+     * @param string $mime_type the mime-type of the media of this item
      */
-    public function setMediaMimeType($mime_type)
+    public function setMediaMimeType($mime_type): void
     {
         $this->media_mime_type = strval($mime_type);
     }
 
-    // }}}
-    // {{{ public function setMediaDuration()
-
     /**
-     * Sets the duration of the media of this item
+     * Sets the duration of the media of this item.
      *
-     * @param integer $duration the duration of the media of this item in
-     *                          seconds.
-     *
-     * @return void
+     * @param int $duration the duration of the media of this item in
+     *                      seconds
      */
-    public function setMediaDuration($duration)
+    public function setMediaDuration($duration): void
     {
         $this->media_duration = intval($duration);
     }
 
-    // }}}
-    // {{{ public function setItunesSubtitle()
-
     /**
-     * Sets the iTunes subtitle of this item
+     * Sets the iTunes subtitle of this item.
      *
-     * @param string $subtitle the iTunes subtitle of this item.
-     *
-     * @return void
+     * @param string $subtitle the iTunes subtitle of this item
      */
-    public function setItunesSubtitle($subtitle)
+    public function setItunesSubtitle($subtitle): void
     {
         $this->itunes_subtitle = strval($subtitle);
     }
 
-    // }}}
-    // {{{ public function setItunesSummary()
-
     /**
-     * Sets the iTunes summary of this item
+     * Sets the iTunes summary of this item.
      *
-     * @param string $summary the iTunes summary of this item.
-     *
-     * @return void
+     * @param string $summary the iTunes summary of this item
      */
-    public function setItunesSummary($summary)
+    public function setItunesSummary($summary): void
     {
         $this->itunes_summary = strval($summary);
     }
 
-    // }}}
-    // {{{ public function setItunesImage()
-
     /**
-     * Sets the iTunes cover image of this item
+     * Sets the iTunes cover image of this item.
      *
-     * @param string $url the iTunes cover image of this item.
-     *
-     * @return void
+     * @param string $url the iTunes cover image of this item
      */
-    public function setItunesImage($url)
+    public function setItunesImage($url): void
     {
         $this->itunes_image_url = strval($url);
     }
 
-    // }}}
-    // {{{ public function build()
-
     /**
-     * Builds this DOMNode for this item
+     * Builds this DOMNode for this item.
      *
      * Creates the item node and appends it to the parent.
      *
      * @param DOMNode $parent the parent node of this item. Usually a Feed node.
-     *
-     * @return void
      */
-    public function build(DOMNode $parent)
+    public function build(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
 
@@ -368,17 +301,12 @@ class Castanet_Item
         $this->buildMediaDuration($item);
     }
 
-    // }}}
-    // {{{ protected function buildTitle()
-
     /**
-     * Builds the title node for this item
+     * Builds the title node for this item.
      *
-     * @param DOMNode $parent the item node.
-     *
-     * @return void
+     * @param DOMNode $parent the item node
      */
-    protected function buildTitle(DOMNode $parent)
+    protected function buildTitle(DOMNode $parent): void
     {
         if ($this->title != '') {
             $document = $parent->ownerDocument;
@@ -391,17 +319,12 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildLink()
-
     /**
-     * Builds the link node for this item
+     * Builds the link node for this item.
      *
-     * @param DOMNode $parent the item node.
-     *
-     * @return void
+     * @param DOMNode $parent the item node
      */
-    protected function buildLink(DOMNode $parent)
+    protected function buildLink(DOMNode $parent): void
     {
         if ($this->link != '') {
             $document = $parent->ownerDocument;
@@ -414,17 +337,12 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildGuid()
-
     /**
-     * Builds the GUID node for this item
+     * Builds the GUID node for this item.
      *
-     * @param DOMNode $parent the item node.
-     *
-     * @return void
+     * @param DOMNode $parent the item node
      */
-    protected function buildGuid(DOMNode $parent)
+    protected function buildGuid(DOMNode $parent): void
     {
         if ($this->guid != '') {
             $document = $parent->ownerDocument;
@@ -441,17 +359,12 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildItunesSubtitle()
-
     /**
-     * Builds the iTunes subtitle node for this item
+     * Builds the iTunes subtitle node for this item.
      *
-     * @param DOMNode $parent the item node.
-     *
-     * @return void
+     * @param DOMNode $parent the item node
      */
-    protected function buildItunesSubtitle(DOMNode $parent)
+    protected function buildItunesSubtitle(DOMNode $parent): void
     {
         if ($this->itunes_subtitle != '') {
             $document = $parent->ownerDocument;
@@ -468,17 +381,12 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildItunesSummary()
-
     /**
-     * Builds the iTunes summary node for this item
+     * Builds the iTunes summary node for this item.
      *
-     * @param DOMNode $parent the item node.
-     *
-     * @return void
+     * @param DOMNode $parent the item node
      */
-    protected function buildItunesSummary(DOMNode $parent)
+    protected function buildItunesSummary(DOMNode $parent): void
     {
         if ($this->itunes_summary != '') {
             $document = $parent->ownerDocument;
@@ -495,17 +403,12 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildItunesImage()
-
     /**
-     * Builds the iTunes image node for this item
+     * Builds the iTunes image node for this item.
      *
-     * @param DOMNode $parent the item node.
-     *
-     * @return void
+     * @param DOMNode $parent the item node
      */
-    protected function buildItunesImage(DOMNode $parent)
+    protected function buildItunesImage(DOMNode $parent): void
     {
         if ($this->itunes_image_url != '') {
             $document = $parent->ownerDocument;
@@ -521,17 +424,12 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildDescription()
-
     /**
-     * Builds the description node for this item
+     * Builds the description node for this item.
      *
-     * @param DOMNode $parent the item node.
-     *
-     * @return void
+     * @param DOMNode $parent the item node
      */
-    protected function buildDescription(DOMNode $parent)
+    protected function buildDescription(DOMNode $parent): void
     {
         if ($this->description != '') {
             $document = $parent->ownerDocument;
@@ -544,17 +442,12 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildPublishDate()
-
     /**
-     * Builds the publish date node for this item
+     * Builds the publish date node for this item.
      *
-     * @param DOMNode $parent the item node.
-     *
-     * @return void
+     * @param DOMNode $parent the item node
      */
-    protected function buildPublishDate(DOMNode $parent)
+    protected function buildPublishDate(DOMNode $parent): void
     {
         if ($this->publish_date != '') {
             $document = $parent->ownerDocument;
@@ -567,49 +460,39 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildMediaEnclosure()
-
     /**
-     * Builds the media enclosure node for this item
+     * Builds the media enclosure node for this item.
      *
-     * @param DOMNode $parent the item node.
-     *
-     * @return void
+     * @param DOMNode $parent the item node
      */
-    protected function buildMediaEnclosure(DOMNode $parent)
+    protected function buildMediaEnclosure(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
 
         $node = $document->createElement('enclosure');
         $node->setAttribute('url', $this->media_url);
-        $node->setAttribute('length', $this->media_size);
+        $node->setAttribute('length', strval($this->media_size));
         $node->setAttribute('type', $this->media_mime_type);
         $parent->appendChild($node);
     }
 
-    // }}}
-    // {{{ protected function buildMediaDuration()
-
     /**
-     * Builds the media duration node for this item
+     * Builds the media duration node for this item.
      *
-     * @param DOMNode $parent the item node.
-     *
-     * @return void
+     * @param DOMNode $parent the item node
      */
-    protected function buildMediaDuration(DOMNode $parent)
+    protected function buildMediaDuration(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
 
         if ($this->media_duration != '') {
             $duration = $this->media_duration;
 
-            $hours    = intval($duration / 3600);
+            $hours = intval($duration / 3600);
             $duration -= ($hours > 0) ? ($hours * 3600) : 0;
-            $minutes  = intval($duration / 60);
+            $minutes = intval($duration / 60);
             $duration -= ($minutes > 0) ? ($minutes * 60) : 0;
-            $seconds  = $duration;
+            $seconds = $duration;
 
             $formatted_duration = sprintf(
                 '%d:%02d:%02d',
@@ -627,8 +510,4 @@ class Castanet_Item
             $parent->appendChild($node);
         }
     }
-
-    // }}}
 }
-
-?>
