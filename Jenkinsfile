@@ -8,33 +8,32 @@ pipeline {
             }
         }
 
-        stage('Lint Modified Files') {
-            when {
-                not {
-                    branch 'master'
-                }
+        stage('Install NPM Dependencies') {
+            environment {
+                PNPM_CACHE_FOLDER = "${env.WORKSPACE}/pnpm-cache/${env.BUILD_NUMBER}"
             }
             steps {
-                sh '''
-                    master_sha=$(git rev-parse origin/master)
-                    newest_sha=$(git rev-parse HEAD)
-                    ./vendor/bin/phpcs \
-                    --standard=PEAR \
-                    --tab-width=4 \
-                    --encoding=utf-8 \
-                    --warning-severity=0 \
-                    --extensions=php \
-                    $(git diff --diff-filter=ACRM --name-only $master_sha...$newest_sha)
-                '''
+                sh 'n -d exec engine corepack enable pnpm'
+                sh 'n -d exec engine pnpm install'
             }
         }
 
-        stage('Lint Entire Project') {
-            when {
-                branch 'master'
-            }
+
+        stage('Check PHP Coding Style') {
             steps {
-                sh './vendor/bin/phpcs'
+                sh 'composer run phpcs:ci'
+            }
+        }
+
+        stage('Check PHP Static Analysis') {
+            steps {
+                sh 'composer run phpstan:ci'
+            }
+        }
+
+        stage('Check Formating') {
+            steps {
+                sh 'n -d exec engine pnpm prettier'
             }
         }
     }

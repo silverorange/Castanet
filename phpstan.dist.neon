@@ -1,0 +1,10 @@
+includes:
+  - phpstan-baseline.neon
+
+parameters:
+  phpVersion: 80200
+  level: 0
+  paths:
+    - Castanet
+  editorUrl: '%%file%%:%%line%%'
+  editorUrlTitle: '%%file%%:%%line%%'
