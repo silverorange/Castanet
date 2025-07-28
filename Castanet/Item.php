@@ -151,7 +151,7 @@ class Castanet_Item
      *
      * @param string $title the title of this item
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = strval($title);
     }
@@ -161,7 +161,7 @@ class Castanet_Item
      *
      * @param string $link the web link of this item
      */
-    public function setLink($link)
+    public function setLink($link): void
     {
         $this->link = strval($link);
     }
@@ -173,7 +173,7 @@ class Castanet_Item
      * @param bool   $is_permalink optional. Whether or not the GUID is a
      *                             web permalink.
      */
-    public function setGuid($guid, $is_permalink = true)
+    public function setGuid($guid, $is_permalink = true): void
     {
         $this->guid = strval($guid);
         $this->guid_is_permalink = ($is_permalink) ? true : false;
@@ -184,7 +184,7 @@ class Castanet_Item
      *
      * @param string $description the short description of this item
      */
-    public function setDescription($description)
+    public function setDescription($description): void
     {
         $this->description = strval($description);
     }
@@ -196,7 +196,7 @@ class Castanet_Item
      *                              RFC 3339 formatted string or a DateTime
      *                              object.
      */
-    public function setPublishDate($date)
+    public function setPublishDate($date): void
     {
         if ($date instanceof DateTime) {
             $date = $date->format('r');
@@ -209,7 +209,7 @@ class Castanet_Item
      *
      * @param string $url the media URL of this item
      */
-    public function setMediaUrl($url)
+    public function setMediaUrl($url): void
     {
         $this->media_url = strval($url);
     }
@@ -219,7 +219,7 @@ class Castanet_Item
      *
      * @param int $size the size of the media of this item in bytes
      */
-    public function setMediaSize($size)
+    public function setMediaSize($size): void
     {
         $this->media_size = intval($size);
     }
@@ -229,7 +229,7 @@ class Castanet_Item
      *
      * @param string $mime_type the mime-type of the media of this item
      */
-    public function setMediaMimeType($mime_type)
+    public function setMediaMimeType($mime_type): void
     {
         $this->media_mime_type = strval($mime_type);
     }
@@ -240,7 +240,7 @@ class Castanet_Item
      * @param int $duration the duration of the media of this item in
      *                      seconds
      */
-    public function setMediaDuration($duration)
+    public function setMediaDuration($duration): void
     {
         $this->media_duration = intval($duration);
     }
@@ -250,7 +250,7 @@ class Castanet_Item
      *
      * @param string $subtitle the iTunes subtitle of this item
      */
-    public function setItunesSubtitle($subtitle)
+    public function setItunesSubtitle($subtitle): void
     {
         $this->itunes_subtitle = strval($subtitle);
     }
@@ -260,7 +260,7 @@ class Castanet_Item
      *
      * @param string $summary the iTunes summary of this item
      */
-    public function setItunesSummary($summary)
+    public function setItunesSummary($summary): void
     {
         $this->itunes_summary = strval($summary);
     }
@@ -270,7 +270,7 @@ class Castanet_Item
      *
      * @param string $url the iTunes cover image of this item
      */
-    public function setItunesImage($url)
+    public function setItunesImage($url): void
     {
         $this->itunes_image_url = strval($url);
     }
@@ -282,7 +282,7 @@ class Castanet_Item
      *
      * @param DOMNode $parent the parent node of this item. Usually a Feed node.
      */
-    public function build(DOMNode $parent)
+    public function build(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
 
@@ -306,7 +306,7 @@ class Castanet_Item
      *
      * @param DOMNode $parent the item node
      */
-    protected function buildTitle(DOMNode $parent)
+    protected function buildTitle(DOMNode $parent): void
     {
         if ($this->title != '') {
             $document = $parent->ownerDocument;
@@ -324,7 +324,7 @@ class Castanet_Item
      *
      * @param DOMNode $parent the item node
      */
-    protected function buildLink(DOMNode $parent)
+    protected function buildLink(DOMNode $parent): void
     {
         if ($this->link != '') {
             $document = $parent->ownerDocument;
@@ -342,7 +342,7 @@ class Castanet_Item
      *
      * @param DOMNode $parent the item node
      */
-    protected function buildGuid(DOMNode $parent)
+    protected function buildGuid(DOMNode $parent): void
     {
         if ($this->guid != '') {
             $document = $parent->ownerDocument;
@@ -364,7 +364,7 @@ class Castanet_Item
      *
      * @param DOMNode $parent the item node
      */
-    protected function buildItunesSubtitle(DOMNode $parent)
+    protected function buildItunesSubtitle(DOMNode $parent): void
     {
         if ($this->itunes_subtitle != '') {
             $document = $parent->ownerDocument;
@@ -386,7 +386,7 @@ class Castanet_Item
      *
      * @param DOMNode $parent the item node
      */
-    protected function buildItunesSummary(DOMNode $parent)
+    protected function buildItunesSummary(DOMNode $parent): void
     {
         if ($this->itunes_summary != '') {
             $document = $parent->ownerDocument;
@@ -408,7 +408,7 @@ class Castanet_Item
      *
      * @param DOMNode $parent the item node
      */
-    protected function buildItunesImage(DOMNode $parent)
+    protected function buildItunesImage(DOMNode $parent): void
     {
         if ($this->itunes_image_url != '') {
             $document = $parent->ownerDocument;
@@ -429,7 +429,7 @@ class Castanet_Item
      *
      * @param DOMNode $parent the item node
      */
-    protected function buildDescription(DOMNode $parent)
+    protected function buildDescription(DOMNode $parent): void
     {
         if ($this->description != '') {
             $document = $parent->ownerDocument;
@@ -447,7 +447,7 @@ class Castanet_Item
      *
      * @param DOMNode $parent the item node
      */
-    protected function buildPublishDate(DOMNode $parent)
+    protected function buildPublishDate(DOMNode $parent): void
     {
         if ($this->publish_date != '') {
             $document = $parent->ownerDocument;
@@ -465,7 +465,7 @@ class Castanet_Item
      *
      * @param DOMNode $parent the item node
      */
-    protected function buildMediaEnclosure(DOMNode $parent)
+    protected function buildMediaEnclosure(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
 
@@ -481,7 +481,7 @@ class Castanet_Item
      *
      * @param DOMNode $parent the item node
      */
-    protected function buildMediaDuration(DOMNode $parent)
+    protected function buildMediaDuration(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
 

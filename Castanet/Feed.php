@@ -206,7 +206,7 @@ class Castanet_Feed
      *
      * @param string $title the title of this feed
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = strval($title);
     }
@@ -216,7 +216,7 @@ class Castanet_Feed
      *
      * @param string $link the web link of this feed
      */
-    public function setLink($link)
+    public function setLink($link): void
     {
         $this->link = strval($link);
     }
@@ -226,7 +226,7 @@ class Castanet_Feed
      *
      * @param string $description the description of this feed
      */
-    public function setDescription($description)
+    public function setDescription($description): void
     {
         $this->description = strval($description);
     }
@@ -237,7 +237,7 @@ class Castanet_Feed
      * @param string $language the language of this feed. This should be a
      *                         2-digit ISO 629-1 code.
      */
-    public function setLanguage($language)
+    public function setLanguage($language): void
     {
         $this->language = strval($language);
     }
@@ -247,7 +247,7 @@ class Castanet_Feed
      *
      * @param string $copyright the copyright attribution of this feed
      */
-    public function setCopyright($copyright)
+    public function setCopyright($copyright): void
     {
         $this->copyright = strval($copyright);
     }
@@ -257,7 +257,7 @@ class Castanet_Feed
      *
      * @param string $managing_editor the managing editor of this feed
      */
-    public function setManagingEditor($managing_editor)
+    public function setManagingEditor($managing_editor): void
     {
         $this->managing_editor = strval($managing_editor);
     }
@@ -269,7 +269,7 @@ class Castanet_Feed
      *                    have minimum dimensions of 1400x1400 pixels and a
      *                    square aspect ratio.
      */
-    public function setItunesImage($url)
+    public function setItunesImage($url): void
     {
         $this->itunes_image_url = strval($url);
     }
@@ -283,7 +283,7 @@ class Castanet_Feed
      * @param int    $width  the width of the image in pixels
      * @param int    $height the height of the image in pixels
      */
-    public function setImage($url, $width, $height)
+    public function setImage($url, $width, $height): void
     {
         $this->image_url = strval($url);
         $this->image_width = intval($width);
@@ -296,7 +296,7 @@ class Castanet_Feed
      * @param bool $explicit true if this feed should be marked explicit,
      *                       otherwise false
      */
-    public function setItunesExplicit($explicit)
+    public function setItunesExplicit($explicit): void
     {
         $this->itunes_explicit = ($explicit) ? true : false;
     }
@@ -309,7 +309,7 @@ class Castanet_Feed
      *                           the public iTunes directory, otherwise
      *                           false
      */
-    public function setItunesBlock($itunes_block)
+    public function setItunesBlock($itunes_block): void
     {
         $this->itunes_block = ($itunes_block) ? true : false;
     }
@@ -319,7 +319,7 @@ class Castanet_Feed
      *
      * @param string $atom_link the self-referential URL for this feed
      */
-    public function setAtomLink($atom_link)
+    public function setAtomLink($atom_link): void
     {
         $this->atom_link = strval($atom_link);
     }
@@ -330,13 +330,13 @@ class Castanet_Feed
      * Categories and subcategories must be selected from the list published
      * by Apple at https://help.apple.com/itc/podcasts_connect/?lang=en#/itc9267a2f12
      *
-     * @param string $itunes_category      the itunes category
-     * @param array  $itunes_subcategories optional. An array of subcategories.
+     * @param string        $itunes_category      the itunes category
+     * @param array<string> $itunes_subcategories optional. An array of subcategories.
      */
     public function setItunesCategories(
         $itunes_category,
         array $itunes_subcategories = []
-    ) {
+    ): void {
         $this->itunes_category = $itunes_category;
 
         $this->itunes_subcategories = [];
@@ -350,7 +350,7 @@ class Castanet_Feed
      *
      * @param string $itunes_email the email address of the owner of this feed
      */
-    public function setItunesOwnerEmail($itunes_email)
+    public function setItunesOwnerEmail($itunes_email): void
     {
         $this->itunes_email = strval($itunes_email);
     }
@@ -360,7 +360,7 @@ class Castanet_Feed
      *
      * @param string $itunes_owner the owner of this feed
      */
-    public function setItunesOwner($itunes_owner)
+    public function setItunesOwner($itunes_owner): void
     {
         $this->itunes_owner = strval($itunes_owner);
     }
@@ -370,7 +370,7 @@ class Castanet_Feed
      *
      * @param string $itunes_author the author of this feed
      */
-    public function setItunesAuthor($itunes_author)
+    public function setItunesAuthor($itunes_author): void
     {
         $this->itunes_author = strval($itunes_author);
     }
@@ -381,34 +381,9 @@ class Castanet_Feed
      * @param Castanet_Item $item the item to add. It will appear after
      *                            existing items.
      */
-    public function addItem(Castanet_Item $item)
+    public function addItem(Castanet_Item $item): void
     {
         $this->items[] = $item;
-    }
-
-    /**
-     * Renders this feed to a string.
-     *
-     * @return string this feed as a string containing a valid XML document
-     */
-    public function __toString()
-    {
-        $document = new DOMDocument('1.0', 'utf-8');
-        $document->formatOutput = true;
-
-        $rss = $document->createElement('rss');
-        $rss->setAttribute('version', Castanet::RSS_VERSION);
-        $rss->setAttributeNS(
-            Castanet::XMLNS_NAMESPACE,
-            'xmlns:itunes',
-            Castanet::ITUNES_NAMESPACE
-        );
-
-        $document->appendChild($rss);
-
-        $this->build($rss);
-
-        return $document->saveXML();
     }
 
     /**
@@ -417,7 +392,7 @@ class Castanet_Feed
      * @param DOMNode $parent the parent node of this feed. Usually a document
      *                        node.
      */
-    public function build(DOMNode $parent)
+    public function build(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
 
@@ -446,7 +421,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildTitle(DOMNode $parent)
+    protected function buildTitle(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
 
@@ -462,7 +437,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildLink(DOMNode $parent)
+    protected function buildLink(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
 
@@ -478,7 +453,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildManagingEditor(DOMNode $parent)
+    protected function buildManagingEditor(DOMNode $parent): void
     {
         if ($this->managing_editor != '') {
             $document = $parent->ownerDocument;
@@ -496,7 +471,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildItunesOwner(DOMNode $parent)
+    protected function buildItunesOwner(DOMNode $parent): void
     {
         if ($this->itunes_email != '' || $this->itunes_owner != '') {
             $document = $parent->ownerDocument;
@@ -535,7 +510,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildItunesCategories(DOMNode $parent)
+    protected function buildItunesCategories(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
         $node = $document->createElementNS(
@@ -561,7 +536,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildItunesAuthor(DOMNode $parent)
+    protected function buildItunesAuthor(DOMNode $parent): void
     {
         if ($this->itunes_author != '') {
             $document = $parent->ownerDocument;
@@ -582,7 +557,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildAtomLink(DOMNode $parent)
+    protected function buildAtomLink(DOMNode $parent): void
     {
         if ($this->atom_link != '') {
             $document = $parent->ownerDocument;
@@ -604,7 +579,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildDescription(DOMNode $parent)
+    protected function buildDescription(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
 
@@ -633,7 +608,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildLanguage(DOMNode $parent)
+    protected function buildLanguage(DOMNode $parent): void
     {
         if ($this->language != '') {
             $document = $parent->ownerDocument;
@@ -651,7 +626,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildCopyright(DOMNode $parent)
+    protected function buildCopyright(DOMNode $parent): void
     {
         if ($this->copyright != '') {
             $document = $parent->ownerDocument;
@@ -669,7 +644,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildItunesExplicit(DOMNode $parent)
+    protected function buildItunesExplicit(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
 
@@ -687,7 +662,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildItunesBlock(DOMNode $parent)
+    protected function buildItunesBlock(DOMNode $parent): void
     {
         $document = $parent->ownerDocument;
 
@@ -705,7 +680,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildItunesImage(DOMNode $parent)
+    protected function buildItunesImage(DOMNode $parent): void
     {
         if ($this->itunes_image_url != '') {
             $document = $parent->ownerDocument;
@@ -726,7 +701,7 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildImage(DOMNode $parent)
+    protected function buildImage(DOMNode $parent): void
     {
         // The standard RSS image element should be a max of 144x400px
         if ($this->image_url != '') {
@@ -765,10 +740,35 @@ class Castanet_Feed
      *
      * @param DOMNode $parent the parent node. Usually the channel.
      */
-    protected function buildItems(DOMNode $parent)
+    protected function buildItems(DOMNode $parent): void
     {
         foreach ($this->items as $item) {
             $item->build($parent);
         }
+    }
+
+    /**
+     * Renders this feed to a string.
+     *
+     * @return string this feed as a string containing a valid XML document
+     */
+    public function __toString(): string
+    {
+        $document = new DOMDocument('1.0', 'utf-8');
+        $document->formatOutput = true;
+
+        $rss = $document->createElement('rss');
+        $rss->setAttribute('version', Castanet::RSS_VERSION);
+        $rss->setAttributeNS(
+            Castanet::XMLNS_NAMESPACE,
+            'xmlns:itunes',
+            Castanet::ITUNES_NAMESPACE
+        );
+
+        $document->appendChild($rss);
+
+        $this->build($rss);
+
+        return $document->saveXML();
     }
 }
