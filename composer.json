@@ -2,7 +2,12 @@
   "name": "silverorange/castanet",
   "description": "Podcast feed generation including iTunes-specific fields.",
   "type": "library",
-  "keywords": [ "podcast", "rss", "feed", "itunes" ],
+  "keywords": [
+    "podcast",
+    "rss",
+    "feed",
+    "itunes"
+  ],
   "homepage": "https://github.com/silverorange/Castanet",
   "license": "MIT",
   "authors": [
@@ -45,7 +50,7 @@
   },
   "autoload": {
     "psr-0": {
-      "Castanet" : ""
+      "Castanet": ""
     }
   },
   "config": {
