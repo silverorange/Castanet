@@ -51,7 +51,7 @@
  */
 class Castanet_Feed
 {
-    // {{{ protected properties
+
 
     /**
      * The title of this feed
@@ -191,8 +191,8 @@ class Castanet_Feed
      */
     protected $items = array();
 
-    // }}}
-    // {{{ public function __construct()
+
+
 
     /**
      * Creates a new feed
@@ -208,8 +208,8 @@ class Castanet_Feed
         $this->setDescription($description);
     }
 
-    // }}}
-    // {{{ public function setTitle()
+
+
 
     /**
      * Sets the title of this feed
@@ -223,8 +223,8 @@ class Castanet_Feed
         $this->title = strval($title);
     }
 
-    // }}}
-    // {{{ public function setLink()
+
+
 
     /**
      * Sets the web link of this feed
@@ -238,8 +238,8 @@ class Castanet_Feed
         $this->link = strval($link);
     }
 
-    // }}}
-    // {{{ public function setDescription()
+
+
 
     /**
      * Sets the description of this feed
@@ -253,8 +253,8 @@ class Castanet_Feed
         $this->description = strval($description);
     }
 
-    // }}}
-    // {{{ public function setLanguage()
+
+
 
     /**
      * Sets the language of this feed
@@ -269,8 +269,8 @@ class Castanet_Feed
         $this->language = strval($language);
     }
 
-    // }}}
-    // {{{ public function setCopyright()
+
+
 
     /**
      * Sets the copyright attribution of this feed
@@ -284,8 +284,8 @@ class Castanet_Feed
         $this->copyright = strval($copyright);
     }
 
-    // }}}
-    // {{{ public function setEditorEmail()
+
+
 
     /**
      * Sets the managing editor of this feed
@@ -299,8 +299,8 @@ class Castanet_Feed
         $this->managing_editor = strval($managing_editor);
     }
 
-    // }}}
-    // {{{ public function setItunesImage()
+
+
 
     /**
      * Sets the iTunes cover image of this feed
@@ -316,8 +316,8 @@ class Castanet_Feed
         $this->itunes_image_url = strval($url);
     }
 
-    // }}}
-    // {{{ public function setImage()
+
+
 
     /**
      * Sets the RSS image of this feed
@@ -337,8 +337,8 @@ class Castanet_Feed
         $this->image_height = intval($height);
     }
 
-    // }}}
-    // {{{ public function setItunesExplicit()
+
+
 
     /**
      * Sets whether or not this feed is marked as explicit in iTunes
@@ -353,8 +353,8 @@ class Castanet_Feed
         $this->itunes_explicit = ($explicit) ? true : false;
     }
 
-    // }}}
-    // {{{ public function setItunesBlock()
+
+
 
     /**
      * Sets whether or not this feed is blocked from the public feed list in
@@ -371,8 +371,8 @@ class Castanet_Feed
         $this->itunes_block = ($itunes_block) ? true : false;
     }
 
-    // }}}
-    // {{{ public function setAtomLink()
+
+
 
     /**
      * Sets the self-referential URL for this feed
@@ -386,8 +386,8 @@ class Castanet_Feed
         $this->atom_link = strval($atom_link);
     }
 
-    // }}}
-    // {{{ public function setItunesCategories()
+
+
 
     /**
      * Sets the iTunes category and subcategories for this feed
@@ -412,8 +412,8 @@ class Castanet_Feed
         }
     }
 
-    // }}}
-    // {{{ public function setItunesOwnerEmail()
+
+
 
     /**
      * Sets the email address of the owner of this feed
@@ -427,8 +427,8 @@ class Castanet_Feed
         $this->itunes_email = strval($itunes_email);
     }
 
-    // }}}
-    // {{{ public function setItunesOwner()
+
+
 
     /**
      * Sets the owner of this feed
@@ -442,8 +442,8 @@ class Castanet_Feed
         $this->itunes_owner = strval($itunes_owner);
     }
 
-    // }}}
-    // {{{ public function setItunesAuthor()
+
+
 
     /**
      * Sets the author of this feed
@@ -457,8 +457,8 @@ class Castanet_Feed
         $this->itunes_author = strval($itunes_author);
     }
 
-    // }}}
-    // {{{ public function addItem()
+
+
 
     /**
      * Adds an item to this feed
@@ -473,8 +473,8 @@ class Castanet_Feed
         $this->items[] = $item;
     }
 
-    // }}}
-    // {{{ public function __toString()
+
+
 
     /**
      * Renders this feed to a string
@@ -501,8 +501,8 @@ class Castanet_Feed
         return $document->saveXML();
     }
 
-    // }}}
-    // {{{ public function build()
+
+
 
     /**
      * Builds this feed
@@ -536,8 +536,8 @@ class Castanet_Feed
         $this->buildItems($channel);
     }
 
-    // }}}
-    // {{{ protected function buildTitle()
+
+
 
     /**
      * Builds the title element of this feed
@@ -557,8 +557,8 @@ class Castanet_Feed
         $parent->appendChild($node);
     }
 
-    // }}}
-    // {{{ protected function buildLink()
+
+
 
     /**
      * Builds the link element of this feed
@@ -578,8 +578,8 @@ class Castanet_Feed
         $parent->appendChild($node);
     }
 
-    // }}}
-    // {{{ protected function buildManagingEditor()
+
+
 
     /**
      * Builds the managing editor element of this feed
@@ -601,8 +601,8 @@ class Castanet_Feed
         }
     }
 
-    // }}}
-    // {{{ protected function buildItunesOwner()
+
+
 
     /**
      * Builds the owner element of this feed
@@ -645,8 +645,8 @@ class Castanet_Feed
         }
     }
 
-    // }}}
-    // {{{ protected function buildItunesCategories()
+
+
 
     /**
      * Builds the category elements of this feed
@@ -676,8 +676,8 @@ class Castanet_Feed
         }
     }
 
-    // }}}
-    // {{{ protected function buildItunesAuthor()
+
+
 
     /**
      * Builds the author element of this feed
@@ -702,8 +702,8 @@ class Castanet_Feed
         }
     }
 
-    // }}}
-    // {{{ protected function buildAtomLink()
+
+
 
     /**
      * Builds the Atom link element of this feed
@@ -729,8 +729,8 @@ class Castanet_Feed
         }
     }
 
-    // }}}
-    // {{{ protected function buildDescription()
+
+
 
     /**
      * Builds the description element of this feed
@@ -763,8 +763,8 @@ class Castanet_Feed
         $parent->appendChild($node);
     }
 
-    // }}}
-    // {{{ protected function buildLanguage()
+
+
 
     /**
      * Builds the language element of this feed
@@ -786,8 +786,8 @@ class Castanet_Feed
         }
     }
 
-    // }}}
-    // {{{ protected function buildCopyright()
+
+
 
     /**
      * Builds the copyright attribution element of this feed
@@ -809,8 +809,8 @@ class Castanet_Feed
         }
     }
 
-    // }}}
-    // {{{ protected function buildItunesExplicit()
+
+
 
     /**
      * Builds the iTunes explicit element of this feed
@@ -832,8 +832,8 @@ class Castanet_Feed
         $parent->appendChild($node);
     }
 
-    // }}}
-    // {{{ protected function buildItunesBlock()
+
+
 
     /**
      * Builds the iTunes block element of this feed
@@ -855,8 +855,8 @@ class Castanet_Feed
         $parent->appendChild($node);
     }
 
-    // }}}
-    // {{{ protected function buildItunesImage()
+
+
 
     /**
      * Builds the iTunes image element of this feed
@@ -881,8 +881,8 @@ class Castanet_Feed
         }
     }
 
-    // }}}
-    // {{{ protected function buildImage()
+
+
 
     /**
      * Builds the image element of this feed
@@ -925,8 +925,8 @@ class Castanet_Feed
         }
     }
 
-    // }}}
-    // {{{ protected function buildItems()
+
+
 
     /**
      * Builds the item elements of this feed
@@ -942,7 +942,7 @@ class Castanet_Feed
         }
     }
 
-    // }}}
+
 }
 
 ?>

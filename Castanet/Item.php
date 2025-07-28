@@ -51,7 +51,7 @@
  */
 class Castanet_Item
 {
-    // {{{ protected properties
+
 
     /**
      * Title of this item
@@ -148,8 +148,8 @@ class Castanet_Item
      */
     protected $guid_is_permalink = true;
 
-    // }}}
-    // {{{ public function setTitle()
+
+
 
     /**
      * Sets the title of this item
@@ -163,8 +163,8 @@ class Castanet_Item
         $this->title = strval($title);
     }
 
-    // }}}
-    // {{{ public function setLink()
+
+
 
     /**
      * Sets the web link of this item
@@ -178,8 +178,8 @@ class Castanet_Item
         $this->link = strval($link);
     }
 
-    // }}}
-    // {{{ public function setGuid()
+
+
 
     /**
      * Sets the globally unique identifier fof this item
@@ -196,8 +196,8 @@ class Castanet_Item
         $this->guid_is_permalink = ($is_permalink) ? true : false;
     }
 
-    // }}}
-    // {{{ public function setDescription()
+
+
 
     /**
      * Sets the short description of this item
@@ -211,8 +211,8 @@ class Castanet_Item
         $this->description = strval($description);
     }
 
-    // }}}
-    // {{{ public function setPublishDate()
+
+
 
     /**
      * Sets the publish date of this item
@@ -231,8 +231,8 @@ class Castanet_Item
         $this->publish_date = $date;
     }
 
-    // }}}
-    // {{{ public function setMediaUrl()
+
+
 
     /**
      * Sets the media URL of this item
@@ -246,8 +246,8 @@ class Castanet_Item
         $this->media_url = strval($url);
     }
 
-    // }}}
-    // {{{ public function setMediaSize()
+
+
 
     /**
      * Sets the size of the media of this item
@@ -261,8 +261,8 @@ class Castanet_Item
         $this->media_size = intval($size);
     }
 
-    // }}}
-    // {{{ public function setMediaMimeType()
+
+
 
     /**
      * Sets the mime-type of the media of this item
@@ -276,8 +276,8 @@ class Castanet_Item
         $this->media_mime_type = strval($mime_type);
     }
 
-    // }}}
-    // {{{ public function setMediaDuration()
+
+
 
     /**
      * Sets the duration of the media of this item
@@ -292,8 +292,8 @@ class Castanet_Item
         $this->media_duration = intval($duration);
     }
 
-    // }}}
-    // {{{ public function setItunesSubtitle()
+
+
 
     /**
      * Sets the iTunes subtitle of this item
@@ -307,8 +307,8 @@ class Castanet_Item
         $this->itunes_subtitle = strval($subtitle);
     }
 
-    // }}}
-    // {{{ public function setItunesSummary()
+
+
 
     /**
      * Sets the iTunes summary of this item
@@ -322,8 +322,8 @@ class Castanet_Item
         $this->itunes_summary = strval($summary);
     }
 
-    // }}}
-    // {{{ public function setItunesImage()
+
+
 
     /**
      * Sets the iTunes cover image of this item
@@ -337,8 +337,8 @@ class Castanet_Item
         $this->itunes_image_url = strval($url);
     }
 
-    // }}}
-    // {{{ public function build()
+
+
 
     /**
      * Builds this DOMNode for this item
@@ -368,8 +368,8 @@ class Castanet_Item
         $this->buildMediaDuration($item);
     }
 
-    // }}}
-    // {{{ protected function buildTitle()
+
+
 
     /**
      * Builds the title node for this item
@@ -391,8 +391,8 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildLink()
+
+
 
     /**
      * Builds the link node for this item
@@ -414,8 +414,8 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildGuid()
+
+
 
     /**
      * Builds the GUID node for this item
@@ -441,8 +441,8 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildItunesSubtitle()
+
+
 
     /**
      * Builds the iTunes subtitle node for this item
@@ -468,8 +468,8 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildItunesSummary()
+
+
 
     /**
      * Builds the iTunes summary node for this item
@@ -495,8 +495,8 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildItunesImage()
+
+
 
     /**
      * Builds the iTunes image node for this item
@@ -521,8 +521,8 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildDescription()
+
+
 
     /**
      * Builds the description node for this item
@@ -544,8 +544,8 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildPublishDate()
+
+
 
     /**
      * Builds the publish date node for this item
@@ -567,8 +567,8 @@ class Castanet_Item
         }
     }
 
-    // }}}
-    // {{{ protected function buildMediaEnclosure()
+
+
 
     /**
      * Builds the media enclosure node for this item
@@ -588,8 +588,8 @@ class Castanet_Item
         $parent->appendChild($node);
     }
 
-    // }}}
-    // {{{ protected function buildMediaDuration()
+
+
 
     /**
      * Builds the media duration node for this item
@@ -628,7 +628,7 @@ class Castanet_Item
         }
     }
 
-    // }}}
+
 }
 
 ?>
