@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file contains the feed object for the Castanet package
+ * This file contains the feed object for the Castanet package.
  *
  * PHP version 5, 7
  *
@@ -30,176 +30,173 @@
  * IN THE SOFTWARE.
  *
  * @category  XML
- * @package   Castanet
+ *
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Charles Waddell <charles@silverorange.com>
  * @copyright 2011-2017 silverorange
  * @license   http://www.opensource.org/licenses/mit-license.html MIT License
- * @link      https://github.com/silverorange/castanet
+ *
+ * @see      https://github.com/silverorange/castanet
  */
 
 /**
  * Class used to generate a podcast.
  *
  * @category  XML
- * @package   Castanet
+ *
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Charles Waddell <charles@silverorange.com>
  * @copyright 2011-2017 silverorange
  * @license   http://www.opensource.org/licenses/mit-license.html MIT License
- * @link      https://github.com/silverorange/castanet
+ *
+ * @see      https://github.com/silverorange/castanet
  */
 class Castanet_Feed
 {
-
-
     /**
-     * The title of this feed
+     * The title of this feed.
      *
      * @var string
      */
     protected $title;
 
     /**
-     * The web link of this feed
+     * The web link of this feed.
      *
      * @var string
      */
     protected $link;
 
     /**
-     * The description of this feed
+     * The description of this feed.
      *
      * @var string
      */
     protected $description;
 
     /**
-     * The ISO 629-1 language of this feed
+     * The ISO 629-1 language of this feed.
      *
      * @var string
      */
     protected $language;
 
     /**
-     * The copyright attribution of this feed
+     * The copyright attribution of this feed.
      *
      * @var string
      */
     protected $copyright;
 
     /**
-     * The managing editor of this feed
+     * The managing editor of this feed.
      *
      * @var string
      */
     protected $managing_editor;
 
     /**
-     * The iTunes cover image of this feed
+     * The iTunes cover image of this feed.
      *
      * @var string
      */
     protected $itunes_image_url;
 
     /**
-     * The RSS image of this feed
+     * The RSS image of this feed.
      *
      * @var string
      */
     protected $image_url;
 
     /**
-     * The width of the RSS image of this feed
+     * The width of the RSS image of this feed.
      *
-     * @var integer
+     * @var int
      */
     protected $image_width;
 
     /**
-     * The height of the RSS image of this feed
+     * The height of the RSS image of this feed.
      *
-     * @var integer
+     * @var int
      */
     protected $image_height;
 
     /**
-     * The iTunes author of this feed
+     * The iTunes author of this feed.
      *
      * @var string
      */
     protected $itunes_author;
 
     /**
-     * The iTunes email address of this feed
+     * The iTunes email address of this feed.
      *
      * @var string
      */
     protected $itunes_email;
 
     /**
-     * The iTunes owner of this feed
+     * The iTunes owner of this feed.
      *
      * @var string
      */
     protected $itunes_owner;
 
     /**
-     * The iTunes category of this feed
+     * The iTunes category of this feed.
      *
      * @var string
      */
     protected $itunes_category;
 
     /**
-     * The iTunes subcategories of this feed
+     * The iTunes subcategories of this feed.
      *
      * An array of strings.
      *
      * @var array
      */
-    protected $itunes_subcategories = array();
+    protected $itunes_subcategories = [];
 
     /**
-     * The Atom web link of this feed
+     * The Atom web link of this feed.
      *
      * @var string
      */
     protected $atom_link;
 
     /**
-     * Whether or not this feed is marked explicit for iTunes
+     * Whether or not this feed is marked explicit for iTunes.
      *
-     * @var boolean
+     * @var bool
      */
     protected $itunes_explicit = false;
 
     /**
      * Whether or not this feed should be blocked from the automatic listing
-     * in iTunes
+     * in iTunes.
      *
-     * @var boolean
+     * @var bool
      */
     protected $itunes_block = false;
 
     /**
-     * The items of this feed
+     * The items of this feed.
      *
      * An array of Castanet_Feed items.
      *
      * @var array
      */
-    protected $items = array();
-
-
-
+    protected $items = [];
 
     /**
-     * Creates a new feed
+     * Creates a new feed.
      *
-     * @param string $title       the title of the feed.
-     * @param string $link        the web link of the feed.
-     * @param string $description the description of the feed.
+     * @param string $title       the title of the feed
+     * @param string $link        the web link of the feed
+     * @param string $description the description of the feed
      */
     public function __construct($title, $link, $description)
     {
@@ -208,127 +205,87 @@ class Castanet_Feed
         $this->setDescription($description);
     }
 
-
-
-
     /**
-     * Sets the title of this feed
+     * Sets the title of this feed.
      *
-     * @param string $title the title of this feed.
-     *
-     * @return null
+     * @param string $title the title of this feed
      */
     public function setTitle($title)
     {
         $this->title = strval($title);
     }
 
-
-
-
     /**
-     * Sets the web link of this feed
+     * Sets the web link of this feed.
      *
-     * @param string $link the web link of this feed.
-     *
-     * @return null
+     * @param string $link the web link of this feed
      */
     public function setLink($link)
     {
         $this->link = strval($link);
     }
 
-
-
-
     /**
-     * Sets the description of this feed
+     * Sets the description of this feed.
      *
-     * @param string $description the description of this feed.
-     *
-     * @return null
+     * @param string $description the description of this feed
      */
     public function setDescription($description)
     {
         $this->description = strval($description);
     }
 
-
-
-
     /**
-     * Sets the language of this feed
+     * Sets the language of this feed.
      *
      * @param string $language the language of this feed. This should be a
      *                         2-digit ISO 629-1 code.
-     *
-     * @return null
      */
     public function setLanguage($language)
     {
         $this->language = strval($language);
     }
 
-
-
-
     /**
-     * Sets the copyright attribution of this feed
+     * Sets the copyright attribution of this feed.
      *
-     * @param string $copyright the copyright attribution of this feed.
-     *
-     * @return null
+     * @param string $copyright the copyright attribution of this feed
      */
     public function setCopyright($copyright)
     {
         $this->copyright = strval($copyright);
     }
 
-
-
-
     /**
-     * Sets the managing editor of this feed
+     * Sets the managing editor of this feed.
      *
-     * @param string $managing_editor the managing editor of this feed.
-     *
-     * @return null
+     * @param string $managing_editor the managing editor of this feed
      */
     public function setManagingEditor($managing_editor)
     {
         $this->managing_editor = strval($managing_editor);
     }
 
-
-
-
     /**
-     * Sets the iTunes cover image of this feed
+     * Sets the iTunes cover image of this feed.
      *
      * @param string $url the iTunes cover image of this feed. This should
      *                    have minimum dimensions of 1400x1400 pixels and a
      *                    square aspect ratio.
-     *
-     * @return null
      */
     public function setItunesImage($url)
     {
         $this->itunes_image_url = strval($url);
     }
 
-
-
-
     /**
-     * Sets the RSS image of this feed
+     * Sets the RSS image of this feed.
      *
-     * @param string  $url    the RSS image of this feed. This should have
-     *                        maximum dimensions of 144x400 pixels. A square
-     *                        aspect ratio iis preferred byt not required.
-     * @param integer $width  the width of the image in pixels.
-     * @param integer $height the height of the image in pixels.
-     *
-     * @return null
+     * @param string $url    the RSS image of this feed. This should have
+     *                       maximum dimensions of 144x400 pixels. A square
+     *                       aspect ratio iis preferred byt not required.
+     * @param int    $width  the width of the image in pixels
+     * @param int    $height the height of the image in pixels
      */
     public function setImage($url, $width, $height)
     {
@@ -337,149 +294,106 @@ class Castanet_Feed
         $this->image_height = intval($height);
     }
 
-
-
-
     /**
-     * Sets whether or not this feed is marked as explicit in iTunes
+     * Sets whether or not this feed is marked as explicit in iTunes.
      *
-     * @param boolean $explicit true if this feed should be marked explicit,
-     *                          otherwise false.
-     *
-     * @return null
+     * @param bool $explicit true if this feed should be marked explicit,
+     *                       otherwise false
      */
     public function setItunesExplicit($explicit)
     {
         $this->itunes_explicit = ($explicit) ? true : false;
     }
 
-
-
-
     /**
      * Sets whether or not this feed is blocked from the public feed list in
-     * the iTunes directory
+     * the iTunes directory.
      *
-     * @param boolean $itunes_block true if this feed should be blocked from
-     *                              the public iTunes directory, otherwise
-     *                              false.
-     *
-     * @return null
+     * @param bool $itunes_block true if this feed should be blocked from
+     *                           the public iTunes directory, otherwise
+     *                           false
      */
     public function setItunesBlock($itunes_block)
     {
         $this->itunes_block = ($itunes_block) ? true : false;
     }
 
-
-
-
     /**
-     * Sets the self-referential URL for this feed
+     * Sets the self-referential URL for this feed.
      *
-     * @param string $atom_link the self-referential URL for this feed.
-     *
-     * @return void
+     * @param string $atom_link the self-referential URL for this feed
      */
     public function setAtomLink($atom_link)
     {
         $this->atom_link = strval($atom_link);
     }
 
-
-
-
     /**
-     * Sets the iTunes category and subcategories for this feed
+     * Sets the iTunes category and subcategories for this feed.
      *
      * Categories and subcategories must be selected from the list published
      * by Apple at https://help.apple.com/itc/podcasts_connect/?lang=en#/itc9267a2f12
      *
-     * @param string $itunes_category      the itunes category.
+     * @param string $itunes_category      the itunes category
      * @param array  $itunes_subcategories optional. An array of subcategories.
-     *
-     * @return void
      */
     public function setItunesCategories(
         $itunes_category,
-        array $itunes_subcategories = array()
+        array $itunes_subcategories = []
     ) {
         $this->itunes_category = $itunes_category;
 
-        $this->itunes_subcategories = array();
+        $this->itunes_subcategories = [];
         foreach ($itunes_subcategories as $subcategory) {
             $this->itunes_subcategories[] = strval($subcategory);
         }
     }
 
-
-
-
     /**
-     * Sets the email address of the owner of this feed
+     * Sets the email address of the owner of this feed.
      *
-     * @param string $itunes_email the email address of the owner of this feed.
-     *
-     * @return null
+     * @param string $itunes_email the email address of the owner of this feed
      */
     public function setItunesOwnerEmail($itunes_email)
     {
         $this->itunes_email = strval($itunes_email);
     }
 
-
-
-
     /**
-     * Sets the owner of this feed
+     * Sets the owner of this feed.
      *
-     * @param string $itunes_owner the owner of this feed.
-     *
-     * @return null
+     * @param string $itunes_owner the owner of this feed
      */
     public function setItunesOwner($itunes_owner)
     {
         $this->itunes_owner = strval($itunes_owner);
     }
 
-
-
-
     /**
-     * Sets the author of this feed
+     * Sets the author of this feed.
      *
-     * @param string $itunes_author the author of this feed.
-     *
-     * @return null
+     * @param string $itunes_author the author of this feed
      */
     public function setItunesAuthor($itunes_author)
     {
         $this->itunes_author = strval($itunes_author);
     }
 
-
-
-
     /**
-     * Adds an item to this feed
+     * Adds an item to this feed.
      *
      * @param Castanet_Item $item the item to add. It will appear after
      *                            existing items.
-     *
-     * @return null
      */
     public function addItem(Castanet_Item $item)
     {
         $this->items[] = $item;
     }
 
-
-
-
     /**
-     * Renders this feed to a string
+     * Renders this feed to a string.
      *
-     * @return string this feed as a string containing a valid XML document.
+     * @return string this feed as a string containing a valid XML document
      */
     public function __toString()
     {
@@ -501,16 +415,11 @@ class Castanet_Feed
         return $document->saveXML();
     }
 
-
-
-
     /**
-     * Builds this feed
+     * Builds this feed.
      *
      * @param DOMNode $parent the parent node of this feed. Usually a document
      *                        node.
-     *
-     * @return void
      */
     public function build(DOMNode $parent)
     {
@@ -536,15 +445,10 @@ class Castanet_Feed
         $this->buildItems($channel);
     }
 
-
-
-
     /**
-     * Builds the title element of this feed
+     * Builds the title element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildTitle(DOMNode $parent)
     {
@@ -557,15 +461,10 @@ class Castanet_Feed
         $parent->appendChild($node);
     }
 
-
-
-
     /**
-     * Builds the link element of this feed
+     * Builds the link element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildLink(DOMNode $parent)
     {
@@ -578,15 +477,10 @@ class Castanet_Feed
         $parent->appendChild($node);
     }
 
-
-
-
     /**
-     * Builds the managing editor element of this feed
+     * Builds the managing editor element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildManagingEditor(DOMNode $parent)
     {
@@ -601,15 +495,10 @@ class Castanet_Feed
         }
     }
 
-
-
-
     /**
-     * Builds the owner element of this feed
+     * Builds the owner element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildItunesOwner(DOMNode $parent)
     {
@@ -645,15 +534,10 @@ class Castanet_Feed
         }
     }
 
-
-
-
     /**
-     * Builds the category elements of this feed
+     * Builds the category elements of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildItunesCategories(DOMNode $parent)
     {
@@ -676,15 +560,10 @@ class Castanet_Feed
         }
     }
 
-
-
-
     /**
-     * Builds the author element of this feed
+     * Builds the author element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildItunesAuthor(DOMNode $parent)
     {
@@ -702,15 +581,10 @@ class Castanet_Feed
         }
     }
 
-
-
-
     /**
-     * Builds the Atom link element of this feed
+     * Builds the Atom link element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildAtomLink(DOMNode $parent)
     {
@@ -729,15 +603,10 @@ class Castanet_Feed
         }
     }
 
-
-
-
     /**
-     * Builds the description element of this feed
+     * Builds the description element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildDescription(DOMNode $parent)
     {
@@ -763,15 +632,10 @@ class Castanet_Feed
         $parent->appendChild($node);
     }
 
-
-
-
     /**
-     * Builds the language element of this feed
+     * Builds the language element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildLanguage(DOMNode $parent)
     {
@@ -786,15 +650,10 @@ class Castanet_Feed
         }
     }
 
-
-
-
     /**
-     * Builds the copyright attribution element of this feed
+     * Builds the copyright attribution element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildCopyright(DOMNode $parent)
     {
@@ -809,15 +668,10 @@ class Castanet_Feed
         }
     }
 
-
-
-
     /**
-     * Builds the iTunes explicit element of this feed
+     * Builds the iTunes explicit element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildItunesExplicit(DOMNode $parent)
     {
@@ -832,15 +686,10 @@ class Castanet_Feed
         $parent->appendChild($node);
     }
 
-
-
-
     /**
-     * Builds the iTunes block element of this feed
+     * Builds the iTunes block element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildItunesBlock(DOMNode $parent)
     {
@@ -855,15 +704,10 @@ class Castanet_Feed
         $parent->appendChild($node);
     }
 
-
-
-
     /**
-     * Builds the iTunes image element of this feed
+     * Builds the iTunes image element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildItunesImage(DOMNode $parent)
     {
@@ -881,15 +725,10 @@ class Castanet_Feed
         }
     }
 
-
-
-
     /**
-     * Builds the image element of this feed
+     * Builds the image element of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildImage(DOMNode $parent)
     {
@@ -925,15 +764,10 @@ class Castanet_Feed
         }
     }
 
-
-
-
     /**
-     * Builds the item elements of this feed
+     * Builds the item elements of this feed.
      *
      * @param DOMNode $parent the parent node. Usually the channel.
-     *
-     * @return void
      */
     protected function buildItems(DOMNode $parent)
     {
@@ -941,8 +775,4 @@ class Castanet_Feed
             $item->build($parent);
         }
     }
-
-
 }
-
-?>
