@@ -183,7 +183,7 @@ class Castanet_Feed
      *
      * An array of Castanet_Feed items.
      *
-     * @var list<Castanet_Feed>
+     * @var list<Castanet_Item>
      */
     protected array $items = [];
 
@@ -769,6 +769,6 @@ class Castanet_Feed
 
         $this->build($rss);
 
-        return $document->saveXML();
+        return $document->saveXML() ?: '';
     }
 }
