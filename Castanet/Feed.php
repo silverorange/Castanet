@@ -156,9 +156,9 @@ class Castanet_Feed
      *
      * An array of strings.
      *
-     * @var array
+     * @var list<string>
      */
-    protected $itunes_subcategories = [];
+    protected array $itunes_subcategories = [];
 
     /**
      * The Atom web link of this feed.
@@ -169,27 +169,23 @@ class Castanet_Feed
 
     /**
      * Whether or not this feed is marked explicit for iTunes.
-     *
-     * @var bool
      */
-    protected $itunes_explicit = false;
+    protected bool $itunes_explicit = false;
 
     /**
      * Whether or not this feed should be blocked from the automatic listing
      * in iTunes.
-     *
-     * @var bool
      */
-    protected $itunes_block = false;
+    protected bool $itunes_block = false;
 
     /**
      * The items of this feed.
      *
      * An array of Castanet_Feed items.
      *
-     * @var array
+     * @var list<Castanet_Feed>
      */
-    protected $items = [];
+    protected array $items = [];
 
     /**
      * Creates a new feed.

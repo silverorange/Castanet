@@ -143,10 +143,8 @@ class Castanet_Item
 
     /**
      * Whether or not the GUID of this item is also a web permalink.
-     *
-     * @var bool
      */
-    protected $guid_is_permalink = true;
+    protected bool $guid_is_permalink = true;
 
     /**
      * Sets the title of this item.
