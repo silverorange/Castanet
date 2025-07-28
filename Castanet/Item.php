@@ -471,7 +471,7 @@ class Castanet_Item
 
         $node = $document->createElement('enclosure');
         $node->setAttribute('url', $this->media_url);
-        $node->setAttribute('length', $this->media_size);
+        $node->setAttribute('length', strval($this->media_size));
         $node->setAttribute('type', $this->media_mime_type);
         $parent->appendChild($node);
     }

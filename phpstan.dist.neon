@@ -3,8 +3,9 @@ includes:
 
 parameters:
   phpVersion: 80200
-  level: 0
+  level: 6
   paths:
     - Castanet
+    - Castanet.php
   editorUrl: '%%file%%:%%line%%'
   editorUrlTitle: '%%file%%:%%line%%'

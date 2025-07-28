@@ -748,12 +748,12 @@ class Castanet_Feed
             $node->appendChild($link);
             $image_node->appendChild($node);
 
-            $width = $document->createTextNode($this->image_width);
+            $width = $document->createTextNode(strval($this->image_width));
             $node = $document->createElement('width');
             $node->appendChild($width);
             $image_node->appendChild($node);
 
-            $height = $document->createTextNode($this->image_height);
+            $height = $document->createTextNode(strval($this->image_height));
             $node = $document->createElement('height');
             $node->appendChild($height);
             $image_node->appendChild($node);
