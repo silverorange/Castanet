@@ -51,7 +51,7 @@
  *
  * @see      https://github.com/silverorange/castanet
  */
-class Castanet_Feed implements \Stringable
+class Castanet_Feed
 {
     /**
      * The title of this feed.
