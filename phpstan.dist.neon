@@ -1,6 +1,3 @@
-includes:
-  - phpstan-baseline.neon
-
 parameters:
   phpVersion: 80200
   level: 7
@@ -9,3 +6,4 @@ parameters:
     - Castanet.php
   editorUrl: '%%file%%:%%line%%'
   editorUrlTitle: '%%file%%:%%line%%'
+  errorFormat: table
