@@ -485,7 +485,7 @@ class Castanet_Item
     {
         $document = $parent->ownerDocument;
 
-        if ($this->media_duration !== null) {
+        if ($this->media_duration != '') {
             $duration = $this->media_duration;
 
             $hours = intval($duration / 3600);
