@@ -5,13 +5,14 @@ use PhpCsFixer\Finder;
 use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 
 $finder = (new Finder())
-    ->in(__DIR__);
+    ->in(__DIR__)
+    ->append([__FILE__]);
 
 return (new Config())
-    ->setParallelConfig(ParallelConfigFactory::detect(null, null, 2**18-1))
+    ->setParallelConfig(ParallelConfigFactory::detect(null, null, 2 ** 18 - 1))
     ->setRules([
         '@PhpCsFixer'      => true,
-        '@PHP8x2Migration'  => true,
+        '@PHP8x2Migration' => true,
         'indentation_type' => true,
 
         // Overrides for (opinionated) @PhpCsFixer and @Symfony rules:
