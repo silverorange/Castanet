@@ -4,6 +4,6 @@ parameters:
   paths:
     - Castanet
     - Castanet.php
-  editorUrl: '%%file%%:%%line%%'
-  editorUrlTitle: '%%file%%:%%line%%'
+  editorUrl: '%%relFile%%:%%line%%'
+  editorUrlTitle: '%%relFile%%:%%line%%'
   errorFormat: table
