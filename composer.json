@@ -1,6 +1,7 @@
 {
   "name": "silverorange/castanet",
   "description": "Podcast feed generation including iTunes-specific fields.",
+  "license": "MIT",
   "type": "library",
   "keywords": [
     "podcast",
@@ -8,8 +9,6 @@
     "feed",
     "itunes"
   ],
-  "homepage": "https://github.com/silverorange/Castanet",
-  "license": "MIT",
   "authors": [
     {
       "name": "Charles Waddell",
@@ -28,6 +27,7 @@
       "email": "nick@silverorange.com"
     }
   ],
+  "homepage": "https://github.com/silverorange/Castanet",
   "support": {
     "issues": "https://github.com/silverorange/Castanet/issues",
     "source": "https://github.com/silverorange/Castanet"
@@ -37,19 +37,9 @@
     "ext-dom": "*"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "3.88.2",
+    "friendsofphp/php-cs-fixer": "^3.88",
     "phpstan/phpstan": "^2.2",
     "rector/rector": "^2.4"
-  },
-  "scripts": {
-    "phpcs": "./vendor/bin/php-cs-fixer check -v",
-    "phpcs:ci": "./vendor/bin/php-cs-fixer check --config=.php-cs-fixer.php --no-interaction --show-progress=none --diff --using-cache=no -vvv",
-    "phpcs:fix": "./vendor/bin/php-cs-fixer fix -v",
-    "phpstan": "./vendor/bin/phpstan analyze",
-    "phpstan:ci": "./vendor/bin/phpstan analyze -vvv --no-progress --memory-limit 2G",
-    "phpstan:baseline": "./vendor/bin/phpstan analyze --generate-baseline",
-    "rector": "./vendor/bin/rector --dry-run",
-    "rector:fix": "./vendor/bin/rector"
   },
   "autoload": {
     "psr-0": {
@@ -58,5 +48,15 @@
   },
   "config": {
     "sort-packages": true
+  },
+  "scripts": {
+    "phpcs": "./vendor/bin/php-cs-fixer check -v",
+    "phpcs:ci": "./vendor/bin/php-cs-fixer check --config=.php-cs-fixer.php --no-interaction --show-progress=none --diff --using-cache=no -vvv",
+    "phpcs:fix": "./vendor/bin/php-cs-fixer fix -v",
+    "phpstan": "./vendor/bin/phpstan analyze",
+    "phpstan:baseline": "./vendor/bin/phpstan analyze --generate-baseline",
+    "phpstan:ci": "./vendor/bin/phpstan analyze -vvv --no-progress --memory-limit 2G",
+    "rector": "./vendor/bin/rector --dry-run",
+    "rector:fix": "./vendor/bin/rector"
   }
 }
