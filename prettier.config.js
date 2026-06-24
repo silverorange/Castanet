@@ -7,5 +7,4 @@ const config = {
   tabWidth: 2,
   trailingComma: 'none'
 };
-
 export default config;
